@@ -14,7 +14,7 @@ class CreateEtudiantsTable extends Migration
     public function up()
     {
         Schema::create('etudiants', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('nom');
             $table->string('prenom');
