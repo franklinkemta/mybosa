@@ -70,8 +70,10 @@ class RegisterController extends Controller
             if ($data['typeCompte'] == 'ETABLISSEMENT') $validationRules = array_merge($validationRules,[
                 'nom' => ['required', 'string', 'max:255'],
             ]);
-        }
-        return Validator::make($data, $validationRules);
+
+            return Validator::make($data, $validationRules);
+        } else dd('Authorization error: Please specify the account type you want to register for');
+        
     }
 
     /**

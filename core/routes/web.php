@@ -40,7 +40,7 @@ Route::get('/inscription', function () {
         if($typeCompte== "etablissement") return view('auth.inscriptionEtablissement');
         else if($typeCompte== "conseiller") return view('auth.inscriptionConseiller');
         else return view('auth.inscriptionEtudiant');
-    } else return view('auth.inscriptionEtudiant');
+    } else return redirect(route('typeCompte'));
 })->name('inscription');
 
 Auth::routes();
@@ -49,5 +49,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('etudiant')->group(function () {
     Route::get('formulaireCandidature', 'EtudiantController@formulaireCandidature')->name('formulaireCandidatureEtudiant');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('dossierCandidature/{id}', 'AdminController@dossierCandidature')->name('dossierCandidatureAdmin');
 });
 

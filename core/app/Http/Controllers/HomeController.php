@@ -26,10 +26,10 @@ class HomeController extends Controller
     {   
         $user = Auth::user();
 
-        if($user->typeCompte == 'ETUDIANT') return view('etudiant.homeEtudiant');
-        if($user->typeCompte == 'CONSEILLER') return view('conseiller.homeConseiller');
-        if($user->typeCompte == 'ETABLISSEMENT') return view('etablissement.homeEtablissement');
-        if($user->typeCompte == 'ADMIN') return view('admin.homeAdmin');
+        if($user->typeCompte == 'ETUDIANT') return view('etudiant.home');
+        if($user->typeCompte == 'CONSEILLER') return view('conseiller.home');
+        if($user->typeCompte == 'ETABLISSEMENT') return view('etablissement.home');
+        if($user->typeCompte == 'ADMIN') return view('admin.home');
 
         return redirect()->route('/'); // in case of error
     }

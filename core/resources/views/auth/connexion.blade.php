@@ -12,7 +12,6 @@
         <label for="typeCompte" >
             <input class="radio_btn" type="radio" placeholder="Entrez votre adresse mail" name="typeCompte" value="etudiant" checked="checked">
             Étudiant
-    
             <input class="radio_btn" type="radio" placeholder="Entrez votre adresse mail" name="typeCompte" value="conseiller">
             Conseiller
             <input class="radio_btn" type="radio" placeholder="Entrez votre adresse mail" name="typeCompte" value="etablissement">

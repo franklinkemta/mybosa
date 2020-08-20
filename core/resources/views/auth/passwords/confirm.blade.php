@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Confirm Password'])
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center text-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+                <div class="card-header text-white _bg-success" style="background-color: #4FAC2E"><strong>{{ __('Confirm Password') }}</strong></div>
 
                 <div class="card-body">
                     {{ __('Please confirm your password before continuing.') }}
@@ -17,7 +17,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" placeholder="Entrer votre mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -28,14 +28,14 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
+                            <div class="col-md-12">
+                                <button type="submit" class="btn _btn-success text-white" style="background-color: #4FAC2E">
+                                    {{ __('Confirmer mot de passe') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Mot de passe oublié?') }}
                                     </a>
                                 @endif
                             </div>
