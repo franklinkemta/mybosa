@@ -1,90 +1,73 @@
-<div class="form-group">
-    <label for="pays"> <b>Pays</b></label>
-    <select class="form-control" name="pays" id="pays" required value="{{ old('pays') }}">
-        <option value="MAROC">(+212) Maroc</option>
-    </select>
-    @error('pays')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
 
-<div class="form-group">
-    <label for="ville"> <b>Ville</b></label>
-    <select class="form-control" name="ville" id="ville" required value="{{ old('ville') }}">
-        <option value="CASABLANCA">Casablanca </option>
-        <option value="RABAT">Rabat</option>
-        <option value="SETTAT">Settat</option>
-        <option value="MARRAKECH">Marrakech</option>
-        <option value="TANGER">Tanger</option>
-    </select>
-    @error('ville')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
+<h6 class="text-center py-4 bg-light">
+    <i class="fa fa-graduation-cap"></i> <span class="intitule_diplome"> Formations répondants aux critères </span> 
+</h6>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="pays"> <b>Pays</b></label>
+            <select disabled onchange="setFormationsParams('pays', this.value)" class="form-control" name="pays" id="pays" required value="{{ old('pays') }}">
+                <option disabled value>Sélectionner le pays</option>
+                <option value="MA" selected>(+212) Maroc</option>
+            </select>
+        </div>
+    </div>
 
-<div class="form-group">
-    <label for="ville"> <b>Prix (en Dirhams) </b></label>
-    <select class="form-control" name="prix" id="prix" required value="{{ old('prix') }}">
-        <option value="30000DH"> <= 30 000 DH </option>
-        <option value="40000DH">30 000 - 40 000 DH</option>
-        <option value="50000DH">40 000 - 50 000 DH</option>
-        <option value="60000DH"> >= 60 000 DH</option>
-    </select>
-    @error('ville')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
+    <div class="col">
+        <div class="form-group">
+            <label for="ville"> <b>Ville</b></label>
+            <select onchange="setFormationsParams('ville', this.value)" class="form-control" name="ville" id="ville" required value="{{ old('ville') }}">
+                <option selected value>Toutes les villes</option>
+                <option value="CASABLANCA">Casablanca </option>
+                <option value="RABAT">Rabat</option>
+                <option value="SETTAT">Settat</option>
+                <option value="MARRAKECH">Marrakech</option>
+                <option value="TANGER">Tanger</option>
+            </select>
+        </div>
+    </div>
 
-<div class="form-group row text-center">
-    <div class="col-md-12">
-        <i class="fa fa-spinner"></i> Ecoles répondants aux critères
+    <div class="col">
+        <div class="form-group">
+            <label for="ville"> <b>Prix (en Dirhams) </b></label>
+            <select onchange="setFormationsParams('prix', this.value)" class="form-control" name="prix" id="prix" required value="{{ old('prix') }}">
+                <option selected value>Tous les prix</option>
+                <option value="30000DH"> < 30 000 DH </option>
+                <option value="45000DH">30 000 - 45 000 DH</option>
+                <option value="60000DH">45 000 - 60 000 DH</option>
+                <option value="100000DH"> > 60 000 DH</option>
+            </select>
+        </div>
     </div>
 </div>
 
-<div class="form-group row px-3 py-2 bg-light">
-    <label> <b>Sélectionner les écoles auxquelles vous souhaitez postuler </b></label>
-    <div class="form-check col-md-10">
-        <input class="form-check-input" name="ecole[]" type="checkbox" id="ecole1" value="ESCA">
-        <label class="form-check-label" for="ecole1">ESCA Casablanca </label>
-    </div>
-    <div class="form-check col-md-10">
-        <input class="form-check-input" name="ecole[]" type="checkbox" id="ecole1" value="IGA">
-        <label class="form-check-label" for="ecole1">IGA Casablanca </label>
-    </div>
-    <div class="form-check col-md-10">
-        <input class="form-check-input" name="ecole[]" type="checkbox" id="ecole1" value="SUPINFO">
-        <label class="form-check-label" for="ecole1">SUP Info Casablanca </label>
-    </div>
-    <div class="form-check col-md-10">
-        <input class="form-check-input" name="ecole[]" type="checkbox" id="ecole1" value="IGA">
-        <label class="form-check-label" for="ecole1">SUP Info Casablanca </label>
-    </div>
-    <div class="form-check col-md-10">
-        <input class="form-check-input" name="ecole[]" type="checkbox" id="ecole1" value="EFET">
-        <label class="form-check-label" for="ecole1">Efet Casablanca</label>
-    </div>
-    <div class="form-check col-md-10">
-        <input class="form-check-input" name="ecole[]" type="checkbox" id="ecole1" value="FSTSETTAT">
-        <label class="form-check-label" for="ecole1">FST Settat</label>
-    </div>
-    @error('ecole')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
+<hr>
+<h6 class="text-left py-2">
+    <b>Sélectionner les formations auxquelles vous souhaitez postuler </b> <small id="loader_formations" style="display:none;"><i class="fa fa-spinner ml-2 mr-1"></i>Patientez...</small>
+</h6>
+
+<table class="table form-group table-striped" style="min-height:200px">
+    <thead class="thead-dark">
+        <tr>  
+            <th scope="col">Formation</th>
+            <th scope="col">Niveau</th>
+            <th scope="col">Etablissement</th>
+            <th scope="col">Spécialité</th>
+            <th scope="col">Durée</th>
+            <th scope="col">Prix(dh)</th>
+            <th scope="col">Ville</th>
+        </tr>
+    </thead>
+    <tbody id="formations" class="mt-3">
+    </tbody>
+</table>
+
+
 
 <div class="form-group row text-center">
     <div class="col-md-12">
         <button  onclick="prevStep()" type="button" class="btn btn-light" >Précédent</button>
-        <button  onclick="nextStep()" type="button" class="btn _btn-success text-white" style="background-color: #4FAC2E" >Suivant</button>
-
+        <button  id="step2NextBtn" disabled onclick="nextStep()" type="button" class="btn _btn-success text-white" style="background-color: #4FAC2E" >Sélectionner</button>
     </div>
 </div>
 

@@ -44,8 +44,8 @@
                             <label for="pays" class="col-md-4 col-form-label text-md-right">{{ __('Pays') }}</label>
                             <div class="col-md-6">
                                 <select class="form-control" name="pays" id="pays" required value="{{ old('pays') }}">
-                                    <option value="CAMEROUN">(+237) Cameroun </option>
-                                    <option value="MAROC">(+212) Maroc</option>
+                                    <option value="CMR">(+237) Cameroun </option>
+                                    <option value="MA">(+212) Maroc</option>
                                 </select>
                             </div>
                         </div>

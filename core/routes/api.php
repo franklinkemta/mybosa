@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'etudiant'], function() {
+    Route::get('diplomes', ['as' => 'get_diplomes', 'uses' => 'DiplomeController@get']);
+    Route::get('formations', ['as' => 'get_formations', 'uses' => 'FormationController@get']);
+});

@@ -25,7 +25,7 @@
                                 <div class="line"></div>
                                 <div class="step" data-target="#part-2">
                                     <button type="button" class="step-trigger" role="tab" aria-controls="part-2" id="part-2-trigger">
-                                        <span class="bs-stepper-label">Critère</span>
+                                        <span class="bs-stepper-label">Formations proposées</span>
                                     </button>
                                 </div>
                                 <div class="line"></div>
@@ -39,11 +39,11 @@
                                 <form action="#">
                                     @csrf
                                     <!-- your steps content here -->
-                                    <div id="part-1" class="content fade" role="tabpanel" aria-labelledby="part-1-trigger">
+                                    <div id="part-1" action="{{ route('get_diplomes') }}" class="content fade" role="tabpanel" aria-labelledby="part-1-trigger">
                                         @include('etudiant.formCandidatSteps.step1')
                                     </div>
 
-                                    <div id="part-2" class="content fade" role="tabpanel" aria-labelledby="part-2-trigger">
+                                    <div id="part-2" action="{{ route('get_formations') }}" class="content fade" role="tabpanel" aria-labelledby="part-2-trigger">
                                         @include('etudiant.formCandidatSteps.step2')
                                     </div>
 

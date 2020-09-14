@@ -21,8 +21,9 @@
                 </div>
 
                 <div class="card-body">
-                    <p>{{ __('Bienvenue sur votre dashboard !') }} <br></p>
+                    <h3>{{ __('Bienvenue sur MyBosa !') }}</h3><br>
                     <h6> <b>Avez vous déjà choisi votre formation ? </b> <i class="fa fa-graduation-cap"></i> </h6> 
+                    <p>Utilisez notre guide pour faire le choix des meilleures formations selon vos besoins et leur soumettre votre candidature d'admission</p>
                 </div>
 
                 <div class="card-footer">

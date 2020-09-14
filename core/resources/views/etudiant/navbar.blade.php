@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-white">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-secondary" href="{{ Request::url() }}">
         <i class="fa fa-th-large mr-2"></i>
         Etudiant : {{ $title }}
@@ -12,3 +12,4 @@
         </li>
     </ul>
 </nav>
+ 
