@@ -46,8 +46,8 @@
     <b>Sélectionner les formations auxquelles vous souhaitez postuler </b> <small id="loader_formations" style="display:none;"><i class="fa fa-spinner ml-2 mr-1"></i>Patientez...</small>
 </h6>
 
-<table class="table form-group table-striped" style="min-height:200px">
-    <thead class="thead-dark">
+<table class="table form-group" style="min-height:200px">
+    <thead class="thead-light">
         <tr>  
             <th scope="col">Formation</th>
             <th scope="col">Niveau</th>
@@ -67,7 +67,7 @@
 <div class="form-group row text-center">
     <div class="col-md-12">
         <button  onclick="prevStep()" type="button" class="btn btn-light" >Précédent</button>
-        <button  id="step2NextBtn" disabled onclick="nextStep()" type="button" class="btn _btn-success text-white" style="background-color: #4FAC2E" >Sélectionner</button>
+        <button  id="step2NextBtn" disabled onclick="saveSelection('{{ route('save_selection_formations') }}')" type="button" class="btn _btn-success text-white" style="background-color: #4FAC2E" >Enregistrer ma sélection</button>
     </div>
 </div>
 

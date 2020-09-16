@@ -15,13 +15,19 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">
+            <i class="fa fa-graduation-cap"></i>
+                Mes candidatures
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
             <i class="fa fa-user mr-2"></i>
-                Ma candidature
+                Dossier candidat
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <i class="fa fa-sign-out mr-2"></i>
+            <i class="fa fa-sign-out mr-1"></i>
                 Déconnexion
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

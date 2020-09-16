@@ -16,11 +16,13 @@ class Formation extends JsonResource
     {
         return [
             'id' => $this->id,
-            'diplome_niveau' => $this->diplome_niveau,
-            'etablissement_nom' => $this->etablissement_nom,
-            'etablissement_intitule_filiere' => $this->etablissement_intitule_filiere,
-            'etablissement_specialite' => $this->etablissement_specialite,
-            'etablissement_ville' => $this->etablissement_ville,
+            'diplome_niveau' => $this->diplome_niveau, //$this->diplome->niveau,  // got by jointure query
+            'etablissement_sigle' => $this->etablissement_sigle, // $this->etablissement->nom, // got by jointure query
+            'etablissement_nom' => $this->etablissement_nom, // $this->etablissement->nom, // got by jointure query
+            'etablissement_ville' =>  $this->etablissement_ville, // $this->etablissement->ville, // got by jointure query
+            
+            'intitule_filiere' => $this->intitule_filiere,// $this->etablissement_intitule_filiere,
+            'specialite' => $this->specialite,
             'prix' => $this->prix,
             'duree' => $this->duree,
             'created_at' => $this->created_at,

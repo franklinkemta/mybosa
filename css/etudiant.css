@@ -28,9 +28,11 @@
     background-color: #000;
   }
   .step-trigger {
-    padding: 5px 10px !important;
+    padding: 0 10px !important;
+    pointer-events: none;
   }
   .step-trigger[aria-selected="true"]{
-    background-color: #4FAC2E !important;
+    background-color:#25566E !important; /* #4FAC2E */
+    border-radius: 0;
     color: #FFF;
   }

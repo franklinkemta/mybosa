@@ -26,3 +26,8 @@ sudo ln -s /Applications/XAMPP/xamppfiles/var/mysql/mysql.sock
 
 or for MAMP
 sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock
+
+# HOW TO INTEGRATE JWT AUTH 
+# https://www.youtube.com/watch?v=6eX9Pj-GhZs&ab_channel=AndrewSchmelyun
+# https://www.w3adda.com/blog/laravel-jwt-authentication-api-laravel-5-8-create-rest-api-jwt-authentication
+# https://www.positronx.io/laravel-jwt-authentication-tutorial-user-login-signup-api/

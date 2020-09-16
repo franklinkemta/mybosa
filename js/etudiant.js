@@ -1,3 +1,4 @@
 $(document).ready(function () {
-    var stepper = new Stepper($('.bs-stepper')[0])
+    // Enable all tooltips in the document:
+    $('[data-toggle="tooltip"]').tooltip();
 })

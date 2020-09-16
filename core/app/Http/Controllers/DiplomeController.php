@@ -9,6 +9,15 @@ use App\Diplome;
 class DiplomeController extends Controller
 {   
     protected $model = Diplome::class;
+
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct() {
+        $this->middleware('auth:api', ['except' => []]);
+    }
     
     public function get(Request $request) {
         $model = $this->model;

@@ -15,7 +15,7 @@ class CreateDiplomesTable extends Migration
     {
         Schema::create('diplomes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('intitule_diplome');
+            $table->string('intitule');
             $table->enum('domaine', ['COMMERCE_GESTION', 'LOGISTIQUE_TRANSPORT', 'SCIENCES_TECHNIQUES', 'SCIENCES_SANTE']);
             $table->enum('niveau', ['1ERE_ANNEE', '2EME_ANNEE', '3EME_ANNEE', '4EME_ANNEE', '5EME_ANNEE', 'DOCTORAT', 'SPECIALITE']);
             $table->timestamps();

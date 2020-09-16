@@ -8,7 +8,11 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}"/>
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token()  }}">
+    
+    <!-- JWT Token -->
+    <meta name="jwt-token" content="{{ session('jwt_token') }}">
+    
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">

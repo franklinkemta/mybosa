@@ -57,6 +57,8 @@ $(document).ready(function () {
         console.warn('step shown')
     })
 
+    // CHECK IF THE USER HAS ALREADY MADE HIS SELECTION
+
     // STEP 1 FORMULAIRE CANDIDATURE
 
     setDiplomesParams = function(key, val) {
@@ -78,14 +80,17 @@ $(document).ready(function () {
       $.ajax({
         type: 'GET',
         url: API_URL,
-        data: diplomesParams,
+        data: { ...diplomesParams, token: $('meta[name="jwt-token"]').attr('content') },
         async: true,
         dataType: 'json',
+        headers: {
+          // 'Authorization': 'Bearer ' + $('meta[name="jwt-token"]').attr('content')
+        }
       }).done(function (jsonData) {
           var items = ["<option disabled selected value>Choisir le diplôme</option>"];
 
           $.each(jsonData.data, function( key, val ) {
-            items.push( `<option value="${val.id}" data-info='${JSON.stringify(val)}'>${val.intitule_diplome} </option>` );
+            items.push( `<option value="${val.id}" data-info='${JSON.stringify(val)}'>${val.intitule} </option>` );
             // console.warn(key, val);
           });
   
@@ -126,7 +131,7 @@ $(document).ready(function () {
         // console.log(formationsParams.diplome_id);
 
         const selected_diplome = $('#diplome').find(':selected').data('info');
-        intitule_diplome = selected_diplome ? selected_diplome.intitule_diplome : 'Formations répondants aux critères';
+        intitule_diplome = selected_diplome ? selected_diplome.intitule : 'Formations répondants aux critères';
         console.log('intitule_diplome', intitule_diplome);
         $('.intitule_diplome').html(intitule_diplome);
 
@@ -150,7 +155,7 @@ $(document).ready(function () {
       $.ajax({
         type: 'GET',
         url: API_URL,
-        data: formationsParams,
+        data: { ...formationsParams, token: $('meta[name="jwt-token"]').attr('content') },
         async: true,
         dataType: 'json',
       }).done(function (jsonData) {
@@ -162,12 +167,20 @@ $(document).ready(function () {
                 <th scope="row">
                   <div class="form-check">
                     <input class="form-check-input" onchange="selectFormation()" name="formation" type="checkbox" id="formation_${val.id}" value="${val.id}" data-info='${JSON.stringify(val)}'>
-                    <label class="form-check-label" for="formation_${val.id}">${val.etablissement_intitule_filiere}</label>
+                    <label class="form-check-label" for="formation_${val.id}">${val.intitule_filiere}</label>
                   </div>
                 </th>
                 <td>${val.diplome_niveau.toLowerCase()}</td>
-                <td>${val.etablissement_nom}</td>
-                <td>${val.etablissement_specialite ? val.etablissement_specialite : '/'}</td>
+                <td>
+                  <btn class="btn btn-dark btn-sm" 
+                    data-toggle="tooltip" 
+                    data-html="true" 
+                    title="${val.etablissement_nom}" 
+                    disabled>
+                    ${val.etablissement_sigle}
+                  </btn>
+                </td>
+                <td>${val.specialite ? val.specialite : '/'}</td>
                 <td>${val.duree ? val.duree.toLowerCase() : ''}</td>
                 <td>${val.prix ? val.prix : ''}</td>
                 <td>${val.etablissement_ville ? val.etablissement_ville.toLowerCase() : ''}</td>
@@ -192,6 +205,37 @@ $(document).ready(function () {
       console.warn('selectedFormations', selectedFormations);
       if (selectedFormations.length && selectedFormations.length <= maxFormationSelection) $('#step2NextBtn').attr('disabled', false);
       else $('#step2NextBtn').attr('disabled', true); // also check the max length
+    }
+
+    saveSelection = function (API_URL) {
+      // save only the formations ids // cancelled
+      /* const selection_formations = selectedFormations.map(function(formation) {
+        return formation.id; // .val();
+      });
+      */
+      console.warn('saveSelection', selectedFormations);
+
+      $.ajax({
+        type: 'POST',
+        url: API_URL,
+        data: { selection_formations: selectedFormations, token: $('meta[name="jwt-token"]').attr('content') },
+        async: true,
+        dataType: 'json',
+        beforeSend: function() {
+          $('#step2NextBtn').attr('disabled', true);
+          $("#loader_formations").show();
+        }
+      }).done(function (jsonData) {
+          console.log(jsonData);
+          nextStep();
+        })               
+        .fail(function (jqXHR, textStatus, err) {
+          console.error(err);
+          $('#step2NextBtn').attr('disabled', false);
+        })
+        .always(function() {
+          $("#loader_formations").hide();
+        })
     }
 
 })

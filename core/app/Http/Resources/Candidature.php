@@ -16,4 +16,5 @@ class Candidature extends JsonResource
     {
         return parent::toArray($request);
     }
+
 }

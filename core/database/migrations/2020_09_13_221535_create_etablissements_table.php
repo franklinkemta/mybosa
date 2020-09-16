@@ -15,7 +15,7 @@ class CreateEtablissementsTable extends Migration
     {
         Schema::create('etablissements', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users'); // ->onDelete('cascade');
             $table->string('nom');
             $table->string('sigle');
             $table->string('pays')->default('MA');

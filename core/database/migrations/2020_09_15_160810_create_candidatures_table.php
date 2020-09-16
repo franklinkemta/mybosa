@@ -15,6 +15,13 @@ class CreateCandidaturesTable extends Migration
     {
         Schema::create('candidatures', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('etudiant_id')->constrained('etudiants');
+            $table->foreignId('diplome_id')->constrained('diplomes');
+            $table->foreignId('etablissement_id')->constrained('etablissements');
+            $table->foreignId('formation_id')->constrained('formations');
+            $table->enum('etat', ['ENVOYEE', 'ATTENTE', 'TRAITEMENT', 'VALIDEE', 'ANNULEE', 'REJETEE']);
+            $table->string('remarque')->default('RAS');
+            $table->boolean('archive')->default(0); // whether the candidature is archived or not
             $table->timestamps();
         });
     }

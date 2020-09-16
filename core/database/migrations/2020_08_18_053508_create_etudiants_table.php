@@ -15,11 +15,13 @@ class CreateEtudiantsTable extends Migration
     {
         Schema::create('etudiants', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users'); // ->onDelete('cascade');
             $table->string('nom');
             $table->string('prenom');
             $table->string('pays');
             $table->string('phone');
+            $table->json('selection_formations')->nullable();
+            $table->boolean('profil_complet')->default(0); 
             $table->timestamps();
         });
     }

@@ -4,15 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\Formation as FormationResource;
+
+use Illuminate\Support\Facades\Auth;
+
 use App\Formation;
+use App\Etudiant;
 
 class FormationController extends Controller
 {
     protected $model = Formation::class;
     
+    public function __construct() {
+        $this->middleware('auth:api', ['except' => []]);
+    }
+
     public function get(Request $request) {
         $model = $this->model;
         $query = null;
+
+        // $criteres = $request->only('diplome_id', 'pays', 'ville');
         
         // get parameters
         $diplome_id = $request->input('diplome_id');
@@ -22,14 +32,40 @@ class FormationController extends Controller
         $limit = $request->input('limit');
 
         $query = $model::where('diplome_id', '=', $diplome_id); // make sure that diplome is an object
+        
+        // Join to the diplome to get the associated diplome columns
+        $query = $query->leftJoin('diplomes', 'diplomes.id', 'formations.diplome_id');
 
-        if ($etablissement_pays) $query->where('etablissement_pays', '=', $etablissement_pays);
-        if ($etablissement_ville) $query->where('etablissement_ville', '=', $etablissement_ville);
+        // Join to the etablissement to get the associated etablissement columns
+        $query = $query->leftJoin('etablissements', 'etablissements.id', 'formations.etablissement_id');
+        
+        if ($etablissement_pays)  {
+            $query->where('etablissements.pays', '=', $etablissement_pays);
+        }
+        if ($etablissement_ville) {
+            $query->where('etablissements.ville', '=', $etablissement_ville);
+        }
         if ($prix) $query->whereBetween('prix', $prix); // array(30000, 40000)
         
+        // define fields to select
+        $query->select('formations.*','diplomes.niveau as diplome_niveau', 'etablissements.sigle as etablissement_sigle', 'etablissements.nom as etablissement_nom','etablissements.pays as etablissement_pays','etablissements.ville as etablissement_ville');
+
         $query->orderBy('score', 'desc');
+        
         if ($limit) $query->limit($limit);
 
         return FormationResource::collection($query->get());
+    }
+
+    public function saveSelection(Request $request) {
+        $user = Auth::user();
+        // $etudiant = Etudiant::whereUserId($user->id)->first();
+        $etudiant = $user->etudiant;
+        if ($request->has('selection_formations')) {
+            $etudiant->selection_formations = $request->input('selection_formations');
+            $etudiant->save();
+            return response()->json('success', 200);
+        } else return response()->json('error', 400); // 500 is when we got an error manipulating a valid endpoint like in a trycatch
+        
     }
 }

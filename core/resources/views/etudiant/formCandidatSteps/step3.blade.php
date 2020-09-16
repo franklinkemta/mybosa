@@ -1,44 +1,40 @@
-<h6 class="text-center py-4 bg-light">
-    <i class="fa fa-user"></i> <span class="intitule_diplome"> Choix de votre formation </span> 
-</h6>
+<h5 class="text-center text-success py-4 bg-light">
+    <i class="fa fa-check"></i> <span> Votre sélection a été enregistrée </span> 
+</h5>
 
 
-<div class="form-group">
-    <label for="identite"> <b>Identité </b> </label>
-    <input type="text" placeholder="Saisissez votre identité (Telle qu'indiquée sur le passeport)" class="form-control" name="identite" id="identite" required autofocus value="{{ old('identite') }}">
-    @error('identite')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
-
-<div class="form-group">
-    <label for="identite"> <b>Filiation </b> </label>
-    <input type="text" placeholder="Filiation" class="form-control" name="identite" id="identite" required autofocus value="{{ old('identite') }}">
-    @error('identite')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
-
-<div class="form-group">
-    <label for="identite"> <b>Parcour </b> </label>
-    <input type="text" placeholder="Parcour" class="form-control" name="identite" id="identite" required autofocus value="{{ old('identite') }}">
-    @error('identite')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
+<div class="row text-center">
+    @if (Auth::user()->etudiant->profil_complet)
+        <div class="col-md-12">
+            <h6> Soumettre votre candidature pour les formations sélectionnées</h6>
+        </div>
+        <div class="col-md-12">
+            <p>
+                Si vous souhaitez éditer votre profil candidat avant de soumettre votre candidature cliquez ici 
+                <a href="{{ route('dossierCandidatEtudiant') }}" class="btn btn-sm btn-outline-secondary my-2"> <i class="fa fa-edit"></i> Modifier mon dossier de candidat </a>
+            </p>
+        </div>
+        
+    @else
+        <div class="col-md-12 py-2">
+            <h6> <b> Prochaine étape > </b> Completer mon dossier candidat</h6>
+        </div>
+        <div class="col-md-12">
+            <p>
+                {{ Auth::user()->etudiant->prenom }} vous devez maintenant completer votre dossier candidat en fournissant les informations et documents nécessaires pour votre demande d'admission <br>
+            </p>
+        </div>
+    @endif
 </div>
 
 
-<div class="form-group row text-center">
+<div class="row text-center">
     <div class="col-md-12">
-        <button  onclick="prevStep()" type="button" class="btn btn-light" >Précédent</button>
-        <button  onclick="" type="button" class="btn _btn-success text-white" style="background-color: #4FAC2E" >Soumettre</button>
-
+        @if (Auth::user()->etudiant->profil_complet)
+            <a href="{{ route('inscriptionSelectionFormationsEtudiant') }}" class="btn _btn-success text-white my-2" style="background-color: #4FAC2E"> <i class="fa fa-share-square"></i> SOUMETTRE MA CANDIDATURE </a>
+        @else
+            <a href="{{ route('dossierCandidatEtudiant') }}" class="btn btn-info my-2"> <i class="fa fa-edit"></i> Completer mon dossier </a>
+        @endif
     </div>
 </div>
 

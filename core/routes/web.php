@@ -49,6 +49,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('etudiant')->group(function () {
     Route::get('formulaireCandidature', 'EtudiantController@formulaireCandidature')->name('formulaireCandidatureEtudiant');
+    Route::get('dossierCandidat', 'EtudiantController@dossierCandidat')->name('dossierCandidatEtudiant');
+    Route::get('inscriptionSelectionFormations', 'EtudiantController@inscriptionSelectionFormations')->name('inscriptionSelectionFormationsEtudiant');
+    
 });
 
 Route::prefix('admin')->group(function () {

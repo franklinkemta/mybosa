@@ -19,7 +19,7 @@
                             <!-- your steps here -->
                                 <div class="step" data-target="#part-1">
                                     <button type="button" class="step-trigger" role="tab" aria-controls="part-1" id="part-1-trigger">
-                                        <span class="bs-stepper-label">Formation</span>
+                                        <span class="bs-stepper-label">Choix des critères</span>
                                     </button>
                                 </div>
                                 <div class="line"></div>
@@ -47,11 +47,11 @@
                                         @include('etudiant.formCandidatSteps.step2')
                                     </div>
 
-                                    <div id="part-3" class="content fade" role="tabpanel" aria-labelledby="part-3-trigger">
-                                        @include('etudiant.formCandidatSteps.step3')
-                                    </div>
-
                                 </form>
+
+                                <div id="part-3" class="content fade" role="tabpanel" aria-labelledby="part-3-trigger">
+                                    @include('etudiant.formCandidatSteps.step3')
+                                </div>
 
 
                             </div>

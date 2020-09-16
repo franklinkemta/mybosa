@@ -18,7 +18,7 @@ class EtudiantController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the etudiant formulaire candidature
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -28,4 +28,29 @@ class EtudiantController extends Controller
 
         return view('etudiant.formulaireCandidature');
     }
+
+    /**
+     * Show the etudiant dossier candidat
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function dossierCandidat()
+    {   
+        $etudiant = Auth::user()->etudiant;
+
+        return view('etudiant.dossierCandidat');
+    }
+
+    /**
+     * Create the candidatures for the etudiant selectionformations
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function inscriptionSelectionFormations()
+    {   
+        //$etudiant = Auth::user()->etudiant;
+
+        //return view('etudiant.dossierCandidat');
+    }
+    
 }
