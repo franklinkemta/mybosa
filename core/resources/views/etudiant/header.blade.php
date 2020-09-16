@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    @if (Route::currentRouteName() == 'formulaireCandidatureEtudiant')
+    @if (Route::currentRouteName() == 'selectionFormationsEtudiant')
       <link rel="stylesheet" href="{{ asset('css/bs-stepper.min.css') }}">
     @endif
     <link rel="stylesheet" href="{{ asset('css/etudiant.css') }}">

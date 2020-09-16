@@ -5,7 +5,7 @@
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- Specific page js Imported Js -->
-    @if (Route::currentRouteName() == 'formulaireCandidatureEtudiant')
+    @if (Route::currentRouteName() == 'selectionFormationsEtudiant')
       <script src="{{ asset('js/bs-stepper.min.js') }}"></script>
       <script src="{{ asset('js/formulaireCandidature.js') }}"></script>
     @endif

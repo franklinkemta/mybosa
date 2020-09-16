@@ -18,12 +18,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin@mybosa'),
         ]);
 
-        DB::table('etudiants')->insert([
+        DB::table('admins')->insert([
             'user_id' => $admin_user_id,
             'nom' => 'Ayub',
             'prenom' => 'Dan',
-            'pays' => 'MA',
-            'phone' => '+2120700130147',
+            'pays_residence' => 'MA',
+            'telephone' => '+2120700130147',
         ]);
 
         // Create a sample school
@@ -50,10 +50,10 @@ class UserSeeder extends Seeder
 
         DB::table('etudiants')->insert([
             'user_id' => $etudiant_user_id,
-            'nom' => 'Franklin',
-            'prenom' => 'Kemta',
-            'pays' => 'MA',
-            'phone' => '+2120609349882',
+            'nom' => 'Kemta',
+            'prenom' => 'Franklin',
+            'pays_residence' => 'MA',
+            'telephone' => '+2120609349882',
         ]);
         
     }

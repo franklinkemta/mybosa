@@ -200,10 +200,10 @@
             <h3>INSCRIPTION CONSEILLER</h3>
             <h3>Informations personnelles</h3>
             <br>
-                    <input type="text" name="nom" placeholder="Entrer votre Nom" required><br>
-                    <input type="text" name="prenom" placeholder="Entrer votre Prénom" required> <br>
-                    <input type="text" name="pays" placeholder="Entrer le nom votre Pays" required><br>
-                    <input type="text" id="phone" name="phone" placeholder="Entrer votre numéro de téléphone" required>
+                    <input type="text" name="nom" placeholder="Vtre Nom" required><br>
+                    <input type="text" name="prenom" placeholder="Votre Prénom" required> <br>
+                    <input type="text" name="pays_residence" placeholder="Pays de résidence" required><br>
+                    <input type="text" id="telephone" name="telephone" placeholder="Numéro de téléphone (+### ##########" required>
 
                 <button id="form_suivant">Suivant</button>
             </div>

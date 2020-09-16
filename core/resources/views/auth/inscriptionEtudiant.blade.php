@@ -40,12 +40,12 @@
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
-        @error('pays')
+        @error('pays_residence')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
-        @error('pays')
+        @error('telephone')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -61,13 +61,15 @@
             </span>
         @enderror
         <br>
-                <input type="text" name="nom" placeholder="Entrer votre Nom" value="{{ old('nom') }}" required autocomplete="nom" autofocus><br>
+                <input class="form-control" type="text" id="nom" name="nom" placeholder="Votre Nom" value="{{ old('nom') }}" required autocomplete="nom" autofocus><br>
                 
-                <input type="text" name="prenom" placeholder="Entrer votre Prénom" value="{{ old('prenom') }}" required autocomplete="prenom" > <br>
+                <input class="form-control" type="text" id="prenom" name="prenom" placeholder="Votre Prénom" value="{{ old('prenom') }}" required autocomplete="prenom" > <br>
                
-                <input type="text" name="pays" placeholder="Entrer le nom votre Pays" value="{{ old('pays') }}" required autocomplete="pays"><br>
+                <select class="form-control" id="pays_residence" name="pays_residence" required value="{{ old('pays_residence') }}">
+                    @include('partials.selectPaysOptions')
+                </select><br>
                 
-                <input type="text" id="phone" name="phone" placeholder="Entrer votre numéro de téléphone" value="{{ old('phone') }}" required autocomplete="phone">
+                <input class="form-control" type="text" id="telephone"  name="telephone" placeholder="Numéro de téléphone (+### ##########)" value="{{ old('telephone') }}" required autocomplete="telephone">
                 
             <button id="form_suivant">Suivant</button>
         </div>

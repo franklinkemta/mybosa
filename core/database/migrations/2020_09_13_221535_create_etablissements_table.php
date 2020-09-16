@@ -20,8 +20,11 @@ class CreateEtablissementsTable extends Migration
             $table->string('sigle');
             $table->string('pays')->default('MA');
             $table->string('ville');
-            $table->string('phone')->nullable();
-            $table->string('website')->nullable();
+            $table->string('telephone')->nullable();
+            $table->string('siteweb')->nullable();
+            $table->string('adresse')->nullable();
+            $table->string('email_contact')->nullable();
+            $table->json('coordonees')->nullable(); // GPS cordinates
             $table->timestamps();
         });
     }

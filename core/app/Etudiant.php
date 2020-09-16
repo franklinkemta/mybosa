@@ -12,8 +12,24 @@ class Etudiant extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id','nom', 'prenom', 'pays', 'phone',
+        'nom', 'prenom', 'pays_residence', 'telephone',
+        'type_piece_identite',
+        'numero_piece_identite',
+        'date_naissance',
+        'pays_naissance',
+        'ville_naissance',
+        'nationalite',
+        'coordones',
+        'ville_residence',
+        'code_postal',
+        'adresse_postale',
     ];
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $garded = ['user_id', 'profil_complet'];
 
     // store data as JSON and retrieve them as PHP array
     // https://laravel.com/docs/5.2/eloquent-mutators#attribute-casting

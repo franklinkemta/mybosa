@@ -48,10 +48,20 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('etudiant')->group(function () {
-    Route::get('formulaireCandidature', 'EtudiantController@formulaireCandidature')->name('formulaireCandidatureEtudiant');
-    Route::get('dossierCandidat', 'EtudiantController@dossierCandidat')->name('dossierCandidatEtudiant');
+    Route::get('selectionFormations', 'EtudiantController@selectionFormations')->name('selectionFormationsEtudiant');
     Route::get('inscriptionSelectionFormations', 'EtudiantController@inscriptionSelectionFormations')->name('inscriptionSelectionFormationsEtudiant');
+    Route::get('candidatures', 'EtudiantController@candidatures')->name('candidaturesEtudiant');
+
+    // Dossier Candidat Etudiant
+    Route::get('dossierCandidat/{section?}', 'EtudiantController@show')->name('dossierCandidatEtudiant');
     
+    // Save each section
+    Route::post('dossierCandidat', 'EtudiantController@store')->name('storeDossierCandidatEtudiant');
+    Route::post('dossierCandidatSection1', 'EtudiantController@storeSection1')->name('storeSection1DossierCandidatEtudiant');
+    Route::post('dossierCandidatSection2', 'EtudiantController@storeSection2')->name('storeSection2DossierCandidatEtudiant');
+    Route::post('dossierCandidatSection3', 'EtudiantController@storeSection3')->name('storeSection3DossierCandidatEtudiant');
+    Route::post('dossierCandidatSection4', 'EtudiantController@storeSection4')->name('storeSection4DossierCandidatEtudiant');
+    Route::post('dossierCandidatSection5', 'EtudiantController@storeSection5')->name('storeSection5DossierCandidatEtudiant');
 });
 
 Route::prefix('admin')->group(function () {

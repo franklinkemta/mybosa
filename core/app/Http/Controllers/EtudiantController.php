@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Formation;
+use App\Candidature;
+
 class EtudiantController extends Controller
 {
     /**
@@ -22,23 +25,45 @@ class EtudiantController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function formulaireCandidature()
+    public function selectionFormations()
     {   
         $user = Auth::user();
 
-        return view('etudiant.formulaireCandidature');
+        return view('etudiant.selectionFormations');
     }
 
-    /**
-     * Show the etudiant dossier candidat
+
+     /**
+     * Show the etudiant candidatures view
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function dossierCandidat()
+    public function candidatures()
     {   
         $etudiant = Auth::user()->etudiant;
 
-        return view('etudiant.dossierCandidat');
+        $query = Candidature::where('etudiant_id', '=', $etudiant->id);
+        $limit = 20; // limits of records to retrieve
+
+        // Join to the formation to get the associated formation columns
+        $query = $query->leftJoin('formations', 'formations.id', 'candidatures.formation_id');
+
+        // Join to the diplome to get the associated diplome columns
+        $query = $query->leftJoin('diplomes', 'diplomes.id', 'candidatures.diplome_id');
+
+        // Join to the etablissement to get the associated etablissement columns
+        $query = $query->leftJoin('etablissements', 'etablissements.id', 'candidatures.etablissement_id');
+        
+        // define fields to select
+        $query->select('candidatures.*', 'formations.intitule_filiere as intitule_filiere', 'diplomes.niveau as diplome_niveau', 'etablissements.sigle as etablissement_sigle', 'etablissements.nom as etablissement_nom','etablissements.pays as etablissement_pays','etablissements.ville as etablissement_ville');
+
+        $query->orderBy('updated_at', 'desc');
+
+        $query->limit($limit);
+
+        $candidatures = $query->get();
+
+        return view('etudiant.candidatures')->with('candidatures', $candidatures);
     }
 
     /**
@@ -48,9 +73,126 @@ class EtudiantController extends Controller
      */
     public function inscriptionSelectionFormations()
     {   
-        //$etudiant = Auth::user()->etudiant;
+        $etudiant = Auth::user()->etudiant;
+        // the list of formation the etudiant has selected
+        $selection_formations =  $etudiant->selection_formations;
 
-        //return view('etudiant.dossierCandidat');
+        $profil_complet = $etudiant->profil_complet;
+        $choix_formation = $selection_formations && count($selection_formations) != 0;
+
+        if ($choix_formation && $profil_complet) {
+            // prepare candidatures
+            $candidatures = array();
+            foreach($selection_formations as $selection_formation) { 
+                // Check if etudiant already have a candidature for the current formation
+                $existingCandidature = Candidature::where('etudiant_id', $etudiant->id)->where('formation_id', $selection_formation['id'])->first();
+                if ($existingCandidature) {
+                    return abort(403, 'Unauthorized action. Vous avez déja une candidature pour : '.ucwords(str_replace('_', ' ', strtolower($selection_formation['diplome_niveau']))).' | '.$selection_formation['intitule_filiere']. ' | '. $selection_formation['etablissement_sigle']. ' | '. $selection_formation['etablissement_ville']);
+                } else {
+                    $candidature = array(
+                        'etudiant_id' => $etudiant->id,
+                        'etablissement_id' => $selection_formation['etablissement_id'],
+                        'formation_id' => $selection_formation['id'],
+                        'diplome_id' => $selection_formation['diplome_id']
+                    );
+                    array_push($candidatures, $candidature);
+                }
+            }
+            Candidature::insert($candidatures);
+
+            // Clear etudiant selection_formations
+            $etudiant->selection_formations = null;
+            $etudiant->save();
+
+            return redirect()->route('candidaturesEtudiant');
+        } else {
+            return abort(403, 'Unauthorized action. Veuillez completer votre dossier candidat !');
+        }
+    }
+
+    /**
+     * Show the etudiant dossier candidat view
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function show(Request $request)
+    {   
+        //very cool option to get the request parameter etheir as input or as route parameter
+        $section = $request->section;
+
+        $etudiant = Auth::user()->etudiant;
+
+        switch ($section) {
+            case 0: { // Section Infos générales
+                
+                return view('etudiant.dossierCandidat')->with(['section' => 0, 'etudiant' => $etudiant]);
+            }
+            break;
+            case 1: { // Section Infos sur les parents
+                
+                return view('etudiant.dossierCandidat')->with(['section' => 1]);
+            }
+            break;
+            case 2: { // Section Education
+                
+                return view('etudiant.dossierCandidat')->with(['section' => 2]);
+            }
+            break;
+            case 3: { // Section Expérience
+                
+                return view('etudiant.dossierCandidat')->with(['section' => 3]);
+            }
+            break;
+            case 4: { // A propos
+                
+                return view('etudiant.dossierCandidat')->with(['section' => 4]);
+            }
+            break;
+            case 5: { // Section Documents
+                
+                return view('etudiant.dossierCandidat')->with(['section' => 5]);
+            }
+            break;
+        
+            default: {
+                // return redirect()->route('dossierCandidatEtudiant', ['section' => 'section1']);
+                return redirect('etudiant/dossierCandidat?section=0');
+            }
+            break;
+        }
+        
+    }
+
+    /**
+     * Update the etudiant dossier candidature section 0
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function store(Request $request)
+    {   
+        $etudiant = Auth::user()->etudiant;
+
+        $sectionGeneral = [
+            'nom', 'prenom', 'pays_residence', 'ville_residence', 'telephone',
+            'type_piece_identite', 'numero_piece_identite', 'date_naissance', 'pays_naissance',
+            'ville_naissance', 'nationalite', 'coordones', 'code_postal', 'adresse_postale'
+        ];
+        
+        // Profil completion check
+        $sectionGeneralesRempli = false;
+        $sectionParentsRempli = false;
+
+        // Here the validations rules
+
+        // Etudiant general informations
+        if ($request->filled($sectionGeneral)) {
+            
+            $sectionGeneralesRempli = true;
+            // dd($request->input());
+            $etudiant->update($request->only($sectionGeneral));
+        } else dd($request->input()); // return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+
+        return view('etudiant.dossierCandidat')->with('etudiant', $etudiant);
     }
     
 }

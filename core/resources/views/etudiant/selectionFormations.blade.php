@@ -34,27 +34,27 @@
                                         <span class="bs-stepper-label">Candidature</span>
                                     </button>
                                 </div>
-                            </div>
-                            <div class="bs-stepper-content text-left pt-3">
-                                <form action="#">
-                                    @csrf
-                                    <!-- your steps content here -->
-                                    <div id="part-1" action="{{ route('get_diplomes') }}" class="content fade" role="tabpanel" aria-labelledby="part-1-trigger">
-                                        @include('etudiant.formCandidatSteps.step1')
-                                    </div>
-
-                                    <div id="part-2" action="{{ route('get_formations') }}" class="content fade" role="tabpanel" aria-labelledby="part-2-trigger">
-                                        @include('etudiant.formCandidatSteps.step2')
-                                    </div>
-
-                                </form>
-
-                                <div id="part-3" class="content fade" role="tabpanel" aria-labelledby="part-3-trigger">
-                                    @include('etudiant.formCandidatSteps.step3')
+                        </div>
+                        <div class="bs-stepper-content text-left pt-3">
+                            <form action="#">
+                                @csrf
+                                <!-- your steps content here -->
+                                <div id="part-1" action="{{ route('get_diplomes') }}" class="content fade" role="tabpanel" aria-labelledby="part-1-trigger">
+                                    @include('etudiant.selectionFormationsParts.part1')
                                 </div>
 
+                                <div id="part-2" action="{{ route('get_formations') }}" class="content fade" role="tabpanel" aria-labelledby="part-2-trigger">
+                                    @include('etudiant.selectionFormationsParts.part2')
+                                </div>
 
+                            </form>
+
+                            <div id="part-3" class="content fade" role="tabpanel" aria-labelledby="part-3-trigger">
+                                @include('etudiant.selectionFormationsParts.part3')
                             </div>
+
+
+                        </div>
                     </div>
 
 

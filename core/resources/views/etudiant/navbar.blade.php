@@ -5,8 +5,8 @@
     </a>
     <ul class="navbar-nav px-3">
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fa fa-bell"></i>
+            <a class="nav-link" href="{{ route('dossierCandidatEtudiant') }}">
+                <i class="fa fa-user"></i>
                 {{ Auth::user()->etudiant->prenom }} {{ Auth::user()->etudiant->nom }}
             </a>
         </li>

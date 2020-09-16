@@ -8,7 +8,7 @@
             <label for="pays"> <b>Pays</b></label>
             <select disabled onchange="setFormationsParams('pays', this.value)" class="form-control" name="pays" id="pays" required value="{{ old('pays') }}">
                 <option disabled value>Sélectionner le pays</option>
-                <option value="MA" selected>(+212) Maroc</option>
+                @include('partials.selectPaysOptions', ['selected' => 'MA' ])
             </select>
         </div>
     </div>

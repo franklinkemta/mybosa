@@ -19,10 +19,15 @@ class CreateCandidaturesTable extends Migration
             $table->foreignId('diplome_id')->constrained('diplomes');
             $table->foreignId('etablissement_id')->constrained('etablissements');
             $table->foreignId('formation_id')->constrained('formations');
-            $table->enum('etat', ['ENVOYEE', 'ATTENTE', 'TRAITEMENT', 'VALIDEE', 'ANNULEE', 'REJETEE']);
+            $table->enum('etat', ['ENVOYEE', 'ATTENTE', 'TRAITEMENT', 'VALIDEE', 'ANNULEE', 'REJETEE'])->default('ENVOYEE');
             $table->string('remarque')->default('RAS');
             $table->boolean('archive')->default(0); // whether the candidature is archived or not
-            $table->timestamps();
+            
+            $table->softDeletes();
+
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            // $table->timestamps();
         });
     }
 

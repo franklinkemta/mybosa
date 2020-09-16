@@ -8,19 +8,19 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="{{ route('home') }}">
+            <a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">
             <i class="fa fa-th-large mr-2"></i>
                 Accueil : Etudiant
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ Route::currentRouteName() == 'candidaturesEtudiant' ? 'active' : '' }}" href="{{ route('candidaturesEtudiant') }}">
             <i class="fa fa-graduation-cap"></i>
                 Mes candidatures
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ Route::currentRouteName() == 'dossierCandidatEtudiant' ? 'active' : '' }}" href="{{ route('dossierCandidatEtudiant') }}">
             <i class="fa fa-user mr-2"></i>
                 Dossier candidat
             </a>

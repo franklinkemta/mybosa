@@ -36,3 +36,13 @@
     border-radius: 0;
     color: #FFF;
   }
+
+  .section-candidat {
+    text-decoration: none;
+    color: #000000 !important;
+  }
+
+  .section-candidat.active {
+    font-weight: bold;
+    color: #25566E !important;
+  }

@@ -1,5 +1,5 @@
-<h5 class="text-center text-success py-4 bg-light">
-    <i class="fa fa-check"></i> <span> Votre sélection a été enregistrée </span> 
+<h5 class="text-center text-info py-4 bg-light">
+    <i class="fa fa-info"></i> <span> Votre sélection a été enregistrée </span> 
 </h5>
 
 

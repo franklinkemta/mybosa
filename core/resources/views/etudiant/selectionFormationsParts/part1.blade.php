@@ -1,5 +1,5 @@
 <h6 class="text-center py-4 bg-light">
-    <i class="fa fa-edit"></i> <span class="intitule_diplome"> Choix de votre formation </span> 
+    <b class="intitule_diplome"> Sélecionnez vos critères </b> 
 </h6>
 <div class="form-group">
     <label>  <b>Niveau d'admission</b></label><br>

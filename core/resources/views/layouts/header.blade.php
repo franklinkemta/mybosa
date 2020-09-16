@@ -33,7 +33,7 @@
         </ul>  
         
         <p class="connexionPc"><span  class="connexion connect_mb">Connexion</span>
-        <span class="inscription"><a href="{{ route('typeCompte') }}" class="inscriptionPc" >Ouvrir un compte</a></span></p>
+        <span class="inscription"><a href="{{ route('register') }}" class="inscriptionPc" >Ouvrir un compte</a></span></p>
         
     </nav>
     <div class="sub_menu">

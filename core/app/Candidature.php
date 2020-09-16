@@ -4,8 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+// For softDeletes
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Candidature extends Model
-{
+{   
+    use SoftDeletes; // can be trashed 
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'etudiant_id','diplome_id', 'etablissement_id', 'formation_id',
+    ];
+    
     /**
      * Get the etudiant that owns the candidature.
      */

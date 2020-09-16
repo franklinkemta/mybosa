@@ -133,9 +133,10 @@ $(document).ready(function () {
         const selected_diplome = $('#diplome').find(':selected').data('info');
         intitule_diplome = selected_diplome ? selected_diplome.intitule : 'Formations répondants aux critères';
         console.log('intitule_diplome', intitule_diplome);
-        $('.intitule_diplome').html(intitule_diplome);
+        $('.intitule_diplome').html(intitule_diplome.toUpperCase());
 
-        $('#step1NextBtn').attr('disabled', false);
+        $('#step1NextBtn').attr('disabled', false); // because the diplome is ready
+        $('#step2NextBtn').attr('disabled', true); // because the selection was reset
 
         // get the list of formations
         getFormations();
@@ -160,7 +161,6 @@ $(document).ready(function () {
         dataType: 'json',
       }).done(function (jsonData) {
           var items = [];
-
           $.each(jsonData.data, function( key, val ) {
             items.push(`
               <tr>
@@ -188,22 +188,29 @@ $(document).ready(function () {
             `);
             // console.warn(key, val);
           });
-  
+
           $("#formations").html(items.join(""));
+
         })               
         .fail(function (jqXHR, textStatus, err) {
           console.error(err);
         })
-        .always(function () { $("#loader_formations").hide(); });
+        .always(function () { 
+          $("#loader_formations").hide(); 
+        });
     }
 
     selectFormation = function() {
       // console.warn('selectFormation', val);
+      // clear selectionFormations array
+      selectedFormations = [];
+
+      // Get all the checked formations
       selectedFormations = $('input[name="formation"]:checked').map(function() {
         return $(this).data('info'); // .val();
       }).get();
       console.warn('selectedFormations', selectedFormations);
-      if (selectedFormations.length && selectedFormations.length <= maxFormationSelection) $('#step2NextBtn').attr('disabled', false);
+      if (selectedFormations.length != 0 && selectedFormations.length <= maxFormationSelection) $('#step2NextBtn').attr('disabled', false);
       else $('#step2NextBtn').attr('disabled', true); // also check the max length
     }
 

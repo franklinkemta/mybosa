@@ -41,22 +41,22 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="pays" class="col-md-4 col-form-label text-md-right">{{ __('Pays') }}</label>
+                            <label for="pays_residence" class="col-md-4 col-form-label text-md-right">{{ __('Pays de résidence') }}</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="pays" id="pays" required value="{{ old('pays') }}">
-                                    <option value="CMR">(+237) Cameroun </option>
-                                    <option value="MA">(+212) Maroc</option>
+                                <select class="form-control" name="pays_residence" id="pays_residence" required value="{{ old('pays_residence') }}">
+                                    <option disabled value selected>Sélectionner le pays</option>
+                                    @include('partials.selectPaysOptions', ['selected' => '' ])
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Téléphone') }}</label>
+                            <label for="telephone" class="col-md-4 col-form-label text-md-right">{{ __('Téléphone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="tel" placeholder="Entrer votre numéro de téléphone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                <input id="telephone" type="tel" placeholder="Numéro de téléphone (+### ##########)" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required autocomplete="telephone">
 
-                                @error('phone')
+                                @error('telephone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
