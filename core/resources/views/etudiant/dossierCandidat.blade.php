@@ -7,7 +7,7 @@
         <div class="col-md-10">
             <div class="card  mt-2">
                 <div class="card-header text-center">
-                    <b>DOSSIER DE CANDIDATURE</b>
+                    <b>MON DOSSIER CANDIDAT</b>
                     <hr>
                     <ul class="nav nav-tabs card-header-tabs flex-column flex-sm-row justify-content-center mt-1">
                         <li class="nav-item">

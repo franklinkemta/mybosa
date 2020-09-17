@@ -53,4 +53,12 @@ class Etudiant extends Model
     {
         return $this->hasMany('App\Candidature');
     }
+
+    /**
+     * Get the parentsEtudiant record associated with the etudiant.
+     */
+    public function parentsEtudiant()
+    {
+        return $this->hasOne('App\ParentsEtudiant');
+    }
 }

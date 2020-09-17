@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('storeDossierCandidatEtudiant') }}">
+<form method="POST" action="{{ route('storeSection5DossierCandidatEtudiant') }}">
     @csrf
     <div class="card-body mt-2">
         <h6>

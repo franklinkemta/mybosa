@@ -20,7 +20,7 @@ class CreateEtudiantsTable extends Migration
             $table->string('prenom');
             $table->string('pays_residence');
             $table->string('ville_residence')->nullable();
-            $table->string('telephone');
+            $table->string('telephone', 30);
             $table->json('selection_formations')->nullable();
             $table->boolean('profil_complet')->default(0);
 

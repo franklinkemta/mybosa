@@ -20,7 +20,7 @@ class CreateEtablissementsTable extends Migration
             $table->string('sigle');
             $table->string('pays')->default('MA');
             $table->string('ville');
-            $table->string('telephone')->nullable();
+            $table->string('telephone', 30)->nullable();
             $table->string('siteweb')->nullable();
             $table->string('adresse')->nullable();
             $table->string('email_contact')->nullable();

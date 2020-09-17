@@ -19,7 +19,7 @@ class CreateAdminsTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('pays_residence');
-            $table->string('telephone');
+            $table->string('telephone', 30);
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Formation;
 use App\Candidature;
+use App\ParentsEtudiant;
 
 class EtudiantController extends Controller
 {
@@ -129,8 +130,13 @@ class EtudiantController extends Controller
             }
             break;
             case 1: { // Section Infos sur les parents
+                $parentsEtudiant = $etudiant->parentsEtudiant;
                 
-                return view('etudiant.dossierCandidat')->with(['section' => 1]);
+                // check if the parents etudiants section has been initialized first
+                if (!$parentsEtudiant) {
+                    $parentsEtudiant = ParentsEtudiant::create(['etudiant_id' => $etudiant->id]);
+                }
+                return view('etudiant.dossierCandidat')->with(['section' => 1, 'parentsEtudiant' => $parentsEtudiant]);
             }
             break;
             case 2: { // Section Education
@@ -190,9 +196,48 @@ class EtudiantController extends Controller
             $sectionGeneralesRempli = true;
             // dd($request->input());
             $etudiant->update($request->only($sectionGeneral));
-        } else dd($request->input()); // return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
 
-        return view('etudiant.dossierCandidat')->with('etudiant', $etudiant);
+            // move to the next section
+            return redirect('etudiant/dossierCandidat?section=1');
+        
+        } else return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+
+    }
+
+    /**
+     * Update the etudiant dossier candidature section 0
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function storeSection1(Request $request)
+    {   
+        $etudiant = Auth::user()->etudiant;
+
+        $sectionFields = [
+            'nom_prenom_pere', 'profession_pere', 'telephone_pere',
+            'nom_prenom_mere', 'profession_mere', 'telephone_mere',
+            'nom_prenom_tuteur', 'profession_tuteur', 'telephone_tuteur', 'parente_tuteur',
+            'adresse_postale',
+            'email'
+        ];
+        
+        // Profil completion check
+        $sectionRempli = false;
+
+        // Here the validations rules
+
+        // Etudiant general informations
+        if ($request->has($sectionFields)) { // changed hasFilled to has because somefields are not mandatories
+            
+            $sectionGeneralesRempli = true;
+            // dd($request->input());
+            $etudiant->parentsEtudiant->update($request->only($sectionFields));
+
+            // move to the next section
+            return redirect('etudiant/dossierCandidat?section=2');
+        
+        } else return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+
     }
     
 }
