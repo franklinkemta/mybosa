@@ -61,4 +61,20 @@ class Etudiant extends Model
     {
         return $this->hasOne('App\ParentsEtudiant');
     }
+
+    /**
+     * Get the educationsExperiencesEtudiant record associated with the etudiant.
+     */
+    public function educationsExperiencesEtudiant()
+    {
+        return $this->hasOne('App\EducationsExperiencesEtudiant');
+    }
+
+    /**
+     * Get the aProposEtudiant record associated with the etudiant.
+     */
+    public function aProposEtudiant()
+    {
+        return $this->hasOne('App\AProposEtudiant');
+    }
 }

@@ -1,13 +1,13 @@
-<form method="POST" action="{{ route('storeSection4DossierCandidatEtudiant') }}">
+<form method="POST" action="{{ $current_section['action'] }}">
     @csrf
     <div class="card-body mt-2">
         <h6>
-            <b class="text-success">A propos</b>
+            <b class="text-success">Documents</b>
             <button id="submit" type="submit" style="float:right" class="btn btn-sm btn-outline-info">
                 <b> {{ __('Enregistrer les informations') }}</b>
             </button>
         </h6>
-        <hr>
+        <hr style="opacity: 0;">
         <!-- Form groups -->
 
     </div>

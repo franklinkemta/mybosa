@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('storeDossierCandidatEtudiant') }}">
+<form method="POST" action="{{ $current_section['action'] }}">
     @csrf
     <div class="card-body mt-2">
         <h6>
@@ -7,7 +7,7 @@
                 <b> {{ __('Enregistrer les informations') }}</b>
             </button>
         </h6>
-        <hr>
+        <hr style="opacity: 0;">
         <!-- Form groups -->
 
         <div class="form-group row">

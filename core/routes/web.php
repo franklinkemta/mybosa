@@ -53,7 +53,7 @@ Route::prefix('etudiant')->group(function () {
     Route::get('candidatures', 'EtudiantController@candidatures')->name('candidaturesEtudiant');
 
     // Dossier Candidat Etudiant
-    Route::get('dossierCandidat/{section?}', 'EtudiantController@show')->name('dossierCandidatEtudiant');
+    Route::get('dossierCandidat/{section_id?}', 'EtudiantController@show')->name('dossierCandidatEtudiant');
     
     // Save each section
     Route::post('dossierCandidat', 'EtudiantController@store')->name('storeDossierCandidatEtudiant');
@@ -61,7 +61,6 @@ Route::prefix('etudiant')->group(function () {
     Route::post('dossierCandidatSection2', 'EtudiantController@storeSection2')->name('storeSection2DossierCandidatEtudiant');
     Route::post('dossierCandidatSection3', 'EtudiantController@storeSection3')->name('storeSection3DossierCandidatEtudiant');
     Route::post('dossierCandidatSection4', 'EtudiantController@storeSection4')->name('storeSection4DossierCandidatEtudiant');
-    Route::post('dossierCandidatSection5', 'EtudiantController@storeSection5')->name('storeSection5DossierCandidatEtudiant');
 });
 
 Route::prefix('admin')->group(function () {

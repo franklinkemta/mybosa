@@ -1,4 +1,14 @@
-@extends('etudiant.layout', ['title' => 'Mon dossier candidat'])
+<?php 
+    $sections = array(
+        ['id' => 0, 'name' => 'Infos générales', 'action' => route('storeDossierCandidatEtudiant'), 'href' => url('etudiant/dossierCandidat?section_id=0') ],
+        ['id' => 1, 'name' => 'Infos sur les parents', 'action' => route('storeSection1DossierCandidatEtudiant'), 'href' => url('etudiant/dossierCandidat?section_id=1') ],
+        ['id' => 2, 'name' => 'Education et Expérience', 'action' => route('storeSection2DossierCandidatEtudiant'), 'href' => url('etudiant/dossierCandidat?section_id=2') ],
+        ['id' => 3, 'name' => 'A propos', 'action' => route('storeSection3DossierCandidatEtudiant'), 'href' => url('etudiant/dossierCandidat?section_id=3') ],
+        ['id' => 4, 'name' => 'Documents', 'action' => route('storeSection4DossierCandidatEtudiant'), 'href' => url('etudiant/dossierCandidat?section_id=4') ],
+    );
+    $current_section = $sections[$section_id];
+?>
+@extends('etudiant.layout', ['title' => 'Mon dossier candidat > '.$current_section['name']])
 
 @section('content')
 <div class="container">
@@ -10,49 +20,15 @@
                     <b>MON DOSSIER CANDIDAT</b>
                     <hr>
                     <ul class="nav nav-tabs card-header-tabs flex-column flex-sm-row justify-content-center mt-1">
-                        <li class="nav-item">
-                            <a class="nav-link section-candidat {{ $section == 0 ? 'active' : '' }}" href="{{ url('etudiant/dossierCandidat?section=0') }}"> Infos générales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link section-candidat {{ $section == 1 ? 'active' : '' }}" href="{{ url('etudiant/dossierCandidat?section=1') }}">Infos sur les parents</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link section-candidat {{ $section == 2 ? 'active' : '' }}" href="{{ url('etudiant/dossierCandidat?section=2') }}">Education</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link section-candidat {{ $section == 3 ? 'active' : '' }}" href="{{ url('etudiant/dossierCandidat?section=3') }}">Expérience</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link section-candidat {{ $section == 4 ? 'active' : '' }}" href="{{ url('etudiant/dossierCandidat?section=4') }}">A propos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link section-candidat {{ $section == 5 ? 'active' : '' }}" href="{{ url('etudiant/dossierCandidat?section=5') }}">Documents </a>
-                        </li>
+                        @foreach ($sections as $section)
+                            <li class="nav-item">
+                                <a class="nav-link section-candidat {{ $section['id'] == $section_id ? 'active' : '' }}" href="{{ $section['href'] }}"> {{ $section['name'] }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
-                @switch($section)
-                    @case(0)
-                        @include('etudiant.dossierCandidatSections.section0')
-                        @break
-                    @case(1)
-                        @include('etudiant.dossierCandidatSections.section1')
-                        @break
-                    @case(2)
-                        @include('etudiant.dossierCandidatSections.section2')
-                        @break
-                    @case(3)
-                        @include('etudiant.dossierCandidatSections.section3')
-                        @break
-                    @case(4)
-                        @include('etudiant.dossierCandidatSections.section4')
-                        @break
-                    @case(5)
-                        @include('etudiant.dossierCandidatSections.section5')
-                        @break
-                    @default
-                        Dossier de candidature
-                @endswitch
+                @include('etudiant.dossierCandidatSections.section'.$section_id)
                 
             </div>
 

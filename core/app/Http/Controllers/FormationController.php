@@ -53,9 +53,13 @@ class FormationController extends Controller
         return FormationResource::collection($query->get());
     }
 
-    public function saveSelection(Request $request) {
+    /**
+     * Save the etudiant selection_formations
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function saveSelectionFormationsEtudiant(Request $request) {
         $user = Auth::user();
-        // $etudiant = Etudiant::whereUserId($user->id)->first();
         $etudiant = $user->etudiant;
         if ($request->has('selection_formations')) {
             $etudiant->selection_formations = $request->input('selection_formations');

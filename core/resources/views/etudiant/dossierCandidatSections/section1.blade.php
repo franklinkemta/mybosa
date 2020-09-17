@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('storeSection1DossierCandidatEtudiant') }}">
+<form method="POST" action="{{ $current_section['action'] }}">
     @csrf
     <div class="card-body mt-2">
         <h6>
@@ -7,13 +7,13 @@
                 <b> {{ __('Enregistrer les informations') }}</b>
             </button>
         </h6>
-        <hr>
+        <hr style="opacity: 0;">
         <!-- Form groups -->
 
         <div class="form-group row">
             <label for="nom_prenom_pere" class="col-sm-3 col-form-label">  <b>Nom et Prénom du père:</b></label>
             <div class="col-sm-9">
-                <input id="nom_prenom_pere" type="text" placeholder="Nom et Prénom du père" class="form-control @error('nom_prenom_pere') is-invalid @enderror" name="nom_prenom_pere" value="{{ $parentsEtudiant->nom_prenom_pere }}" required autocomplete="nom_prenom_pere">
+                <input id="nom_prenom_pere" type="text" placeholder="Nom et Prénom du père" class="form-control @error('nom_prenom_pere') is-invalid @enderror" name="nom_prenom_pere" value="{{ $parentsEtudiant->nom_prenom_pere }}" autocomplete="nom_prenom_pere">
                 @error('nom_prenom_pere')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -25,7 +25,7 @@
         <div class="form-group row">
             <label for="profession_pere" class="col-sm-3 col-form-label">  <b>Proféssion du père:</b></label>
             <div class="col-sm-4">
-                <input id="profession_pere" type="text" placeholder="Proféssion du père" class="form-control @error('profession_pere') is-invalid @enderror" name="profession_pere" value="{{ $parentsEtudiant->profession_pere }}" required autocomplete="nom_prenom_pere">
+                <input id="profession_pere" type="text" placeholder="Proféssion du père" class="form-control @error('profession_pere') is-invalid @enderror" name="profession_pere" value="{{ $parentsEtudiant->profession_pere }}" autocomplete="nom_prenom_pere">
                 @error('profession_pere')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -34,7 +34,7 @@
             </div>
             <label for="telephone_pere" class="col-sm-1 col-form-label"><b>Tel:</b></label>
             <div class="col-sm-4">
-                <input id="telephone_pere" type="tel" placeholder="Téléphone du père" class="form-control @error('telephone_pere') is-invalid @enderror" name="telephone_pere" value="{{ $parentsEtudiant->telephone_pere }}" required autocomplete="nom_prenom_pere">
+                <input id="telephone_pere" type="tel" placeholder="Téléphone du père" class="form-control @error('telephone_pere') is-invalid @enderror" name="telephone_pere" value="{{ $parentsEtudiant->telephone_pere }}" autocomplete="nom_prenom_pere">
                 @error('telephone_pere')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -46,7 +46,7 @@
         <div class="form-group row">
             <label for="nom_prenom_mere" class="col-sm-4 col-form-label">  <b>Nom et Prénom de la mère:</b></label>
             <div class="col-sm-8">
-                <input id="nom_prenom_mere" type="text" placeholder="Nom et Prénom de la mère" class="form-control @error('nom_prenom_mere') is-invalid @enderror" name="nom_prenom_mere" value="{{ $parentsEtudiant->nom_prenom_mere }}" required autocomplete="nom_prenom_mere">
+                <input id="nom_prenom_mere" type="text" placeholder="Nom et Prénom de la mère" class="form-control @error('nom_prenom_mere') is-invalid @enderror" name="nom_prenom_mere" value="{{ $parentsEtudiant->nom_prenom_mere }}" autocomplete="nom_prenom_mere">
                 @error('nom_prenom_mere')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
         <div class="form-group row">
             <label for="profession_mere" class="col-sm-3 col-form-label">  <b>Proféssion de la mère:</b></label>
             <div class="col-sm-4">
-                <input id="profession_mere" type="text" placeholder="Proféssion de la mère" class="form-control @error('profession_mere') is-invalid @enderror" name="profession_mere" value="{{ $parentsEtudiant->profession_mere }}" required autocomplete="profession_mere">
+                <input id="profession_mere" type="text" placeholder="Proféssion de la mère" class="form-control @error('profession_mere') is-invalid @enderror" name="profession_mere" value="{{ $parentsEtudiant->profession_mere }}" autocomplete="profession_mere">
                 @error('profession_mere')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -67,7 +67,7 @@
             </div>
             <label for="telephone_mere" class="col-sm-1 col-form-label"><b>Tel:</b></label>
             <div class="col-sm-4">
-                <input id="telephone_mere" type="tel" placeholder="Téléphone de la mère" class="form-control @error('telephone_mere') is-invalid @enderror" name="telephone_mere" value="{{ $parentsEtudiant->telephone_mere }}" required autocomplete="telephone_mere">
+                <input id="telephone_mere" type="tel" placeholder="Téléphone de la mère" class="form-control @error('telephone_mere') is-invalid @enderror" name="telephone_mere" value="{{ $parentsEtudiant->telephone_mere }}" autocomplete="telephone_mere">
                 @error('telephone_mere')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -123,7 +123,7 @@
         <div class="form-group row">
             <label for="adresse_postale" class="col-sm-3 col-form-label">  <b>Adresse postale:</b></label>
             <div class="col-sm-9">
-                <input id="adresse_postale" type="text" placeholder="Adresse postale" class="form-control @error('adresse_postale') is-invalid @enderror" name="adresse_postale" value="{{ $parentsEtudiant->adresse_postale }}" required autocomplete="adresse_postale">
+                <input id="adresse_postale" type="text" placeholder="Adresse postale" class="form-control @error('adresse_postale') is-invalid @enderror" name="adresse_postale" value="{{ $parentsEtudiant->adresse_postale }}" autocomplete="adresse_postale">
                 @error('adresse_postale')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -134,7 +134,7 @@
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">  <b>Email:</b></label>
             <div class="col-sm-10">
-                <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $parentsEtudiant->email }}" required autocomplete="email">
+                <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $parentsEtudiant->email }}" autocomplete="email">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

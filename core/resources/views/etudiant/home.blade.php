@@ -32,36 +32,36 @@
                 
                 <div class="card-body">
                     @if ($choix_formation)
-                    <table class="table table-bordered" style="min-height:100px;">
-                        <thead class="thead-light">
-                            <tr> 
-                                <th scope="col">Niveau</th> 
-                                <th scope="col">Formation</th>
-                                <th scope="col">Etablissement</th>
-                                <th scope="col">Ville</th>
-                            </tr>
-                        </thead>
-                        <tbody >
-                            @foreach($selection_formations as $formation)
-                                <tr id="{{ $formation['id'] }}">
-                                    <td>{{ ucwords(str_replace('_', ' ', strtolower($formation['diplome_niveau']))) }} </td>
-                                    <th scope="row">
-                                        {{ $formation['intitule_filiere'] }}
-                                    </th>
-                                    <td>
-                                        <btn class="btn btn-dark btn-sm" 
-                                            data-toggle="tooltip" 
-                                            data-html="true" 
-                                            title="{{ $formation['etablissement_nom'] }}" 
-                                            disabled>
-                                            {{ $formation['etablissement_sigle'] }}
-                                        </btn>
-                                    </td>
-                                    <td>{{ $formation['etablissement_ville'] }}</td>
+                        <table class="table table-bordered" style="min-height:100px;">
+                            <thead class="thead-light">
+                                <tr> 
+                                    <th scope="col">Niveau</th> 
+                                    <th scope="col">Formation</th>
+                                    <th scope="col">Etablissement</th>
+                                    <th scope="col">Ville</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody >
+                                @foreach($selection_formations as $formation)
+                                    <tr id="{{ $formation['id'] }}">
+                                        <td>{{ ucwords(str_replace('_', ' ', strtolower($formation['diplome_niveau']))) }} </td>
+                                        <th scope="row">
+                                            {{ $formation['intitule_filiere'] }}
+                                        </th>
+                                        <td>
+                                            <btn class="btn btn-dark btn-sm" 
+                                                data-toggle="tooltip" 
+                                                data-html="true" 
+                                                title="{{ $formation['etablissement_nom'] }}" 
+                                                disabled>
+                                                {{ $formation['etablissement_sigle'] }}
+                                            </btn>
+                                        </td>
+                                        <td>{{ $formation['etablissement_ville'] }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                         <a href="{{ route('selectionFormationsEtudiant') }}" class="btn btn-light mb-3"> <i class="fa fa-edit"></i> Modifier ma sélection de formation </a>
                         <h6> <b> Prochaine étape > </b> 
                             @if (Auth::user()->etudiant->profil_complet)

@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+// To log some usefull step
+use Log;
+
 use App\Formation;
 use App\Candidature;
 use App\ParentsEtudiant;
+use App\EducationsExperiencesEtudiant;
+use App\AProposEtudiant;
 
 class EtudiantController extends Controller
 {
@@ -22,7 +27,7 @@ class EtudiantController extends Controller
     }
 
     /**
-     * Show the etudiant formulaire candidature
+     * Show the etudiant selection formation wizard
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -32,7 +37,6 @@ class EtudiantController extends Controller
 
         return view('etudiant.selectionFormations');
     }
-
 
      /**
      * Show the etudiant candidatures view
@@ -118,15 +122,18 @@ class EtudiantController extends Controller
      */
     public function show(Request $request)
     {   
-        //very cool option to get the request parameter etheir as input or as route parameter
-        $section = $request->section;
+        //very cool option to get the request parameter either as input or as route parameter
+        $section_id = $request->section_id;
 
         $etudiant = Auth::user()->etudiant;
 
-        switch ($section) {
+        // Make sure the null or undefined value is reset to 0 before switch
+        if (!$section_id) $section_id = 0;
+
+        switch ($section_id) {
             case 0: { // Section Infos générales
                 
-                return view('etudiant.dossierCandidat')->with(['section' => 0, 'etudiant' => $etudiant]);
+                return view('etudiant.dossierCandidat')->with(['section_id' => $section_id, 'etudiant' => $etudiant]);
             }
             break;
             case 1: { // Section Infos sur les parents
@@ -134,35 +141,36 @@ class EtudiantController extends Controller
                 
                 // check if the parents etudiants section has been initialized first
                 if (!$parentsEtudiant) {
+                    Log::info('Etudiant '.$etudiant->id.': Initialisation de la section Informations Parents');
                     $parentsEtudiant = ParentsEtudiant::create(['etudiant_id' => $etudiant->id]);
                 }
-                return view('etudiant.dossierCandidat')->with(['section' => 1, 'parentsEtudiant' => $parentsEtudiant]);
+                return view('etudiant.dossierCandidat')->with(['section_id' => $section_id, 'parentsEtudiant' => $parentsEtudiant]);
             }
             break;
-            case 2: { // Section Education
-                
-                return view('etudiant.dossierCandidat')->with(['section' => 2]);
+            case 2: { // Section Education et Expérience
+                $educationsExperiencesEtudiant = $etudiant->educationsExperiencesEtudiant;
+                // check if the parents etudiants section has been initialized first
+                if (!$educationsExperiencesEtudiant) {
+                    Log::info('Etudiant '.$etudiant->id.': Initialisation de la section Etucation et Expériences');
+                    $educationsExperiencesEtudiant = EducationsExperiencesEtudiant::create(['etudiant_id' => $etudiant->id]);
+                }
+                return view('etudiant.dossierCandidat')->with(['section_id' => $section_id, 'educationsExperiencesEtudiant' => $educationsExperiencesEtudiant]);
             }
             break;
-            case 3: { // Section Expérience
+            case 3: { // A propos
                 
-                return view('etudiant.dossierCandidat')->with(['section' => 3]);
+                return view('etudiant.dossierCandidat')->with(['section_id' => $section_id]);
             }
             break;
-            case 4: { // A propos
+            case 4: { // Section Documents
                 
-                return view('etudiant.dossierCandidat')->with(['section' => 4]);
-            }
-            break;
-            case 5: { // Section Documents
-                
-                return view('etudiant.dossierCandidat')->with(['section' => 5]);
+                return view('etudiant.dossierCandidat')->with(['section_id' => $section_id]);
             }
             break;
         
-            default: {
-                // return redirect()->route('dossierCandidatEtudiant', ['section' => 'section1']);
-                return redirect('etudiant/dossierCandidat?section=0');
+            default: { // when the given id is above 4
+                // return redirect()->route('dossierCandidatEtudiant', ['section_id' => $section_id]);
+                return redirect('etudiant/dossierCandidat?section_id=0');
             }
             break;
         }
@@ -185,20 +193,20 @@ class EtudiantController extends Controller
         ];
         
         // Profil completion check
-        $sectionGeneralesRempli = false;
-        $sectionParentsRempli = false;
+        $sectionRempli = false;
 
         // Here the validations rules
 
         // Etudiant general informations
         if ($request->filled($sectionGeneral)) {
             
-            $sectionGeneralesRempli = true;
+            $sectionRempli = true;
             // dd($request->input());
             $etudiant->update($request->only($sectionGeneral));
+            $etudiant->save();
 
             // move to the next section
-            return redirect('etudiant/dossierCandidat?section=1');
+            return redirect('etudiant/dossierCandidat?section_id=1');
         
         } else return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
 
@@ -229,12 +237,57 @@ class EtudiantController extends Controller
         // Etudiant general informations
         if ($request->has($sectionFields)) { // changed hasFilled to has because somefields are not mandatories
             
-            $sectionGeneralesRempli = true;
+            $sectionRempli = true;
             // dd($request->input());
             $etudiant->parentsEtudiant->update($request->only($sectionFields));
+            $etudiant->save();
 
             // move to the next section
-            return redirect('etudiant/dossierCandidat?section=2');
+            return redirect('etudiant/dossierCandidat?section_id=2');
+        
+        } else return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+
+    }
+
+    /**
+     * Update the etudiant dossier candidature section 0
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function storeSection2(Request $request)
+    {
+        $etudiant = Auth::user()->etudiant;
+
+        $sectionFields = [
+            'formations_recentes', 'diplomes_recents', 'experiences_professionnelles',
+        ];
+        
+        // Profil completion check
+        $sectionRempli = false;
+
+        // Here the validations rules
+
+        // Etudiant general informations
+        if ($request->hasAny($sectionFields)) { // changed hasFilled to has because somefields are not mandatories
+            
+            $sectionGeneralesRempli = true;
+
+            // filter array to remove the null placeholder hidden input, then map the array to convert each json string sent by javascript to obtain a full json object
+            $formations_recentes = array_map('json_decode', array_filter($request->input('formations_recentes')));
+            $diplomes_recents = array_map('json_decode', array_filter($request->input('diplomes_recents')));
+            $experiences_professionnelles = array_map('json_decode', array_filter($request->input('experiences_professionnelles')));
+
+
+            $etudiant->educationsExperiencesEtudiant->update([
+                'formations_recentes' => $formations_recentes, 
+                'diplomes_recents' => $diplomes_recents,
+                'experiences_professionnelles' => $experiences_professionnelles,
+            ]);
+
+            $etudiant->save();
+
+            // move to the next section
+            return redirect('etudiant/dossierCandidat?section_id=3');
         
         } else return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
 
