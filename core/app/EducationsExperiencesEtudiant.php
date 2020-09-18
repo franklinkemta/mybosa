@@ -15,12 +15,6 @@ class EducationsExperiencesEtudiant extends Model
         'etudiant_id',
         'formations_recentes', 'diplomes_recents', 'experiences_professionnelles',
     ];
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $garded = ['section_complete'];
 
     // Cast the Model Json attributes to PHP array
     protected $casts = [

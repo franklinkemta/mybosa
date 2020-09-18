@@ -17,7 +17,6 @@ class CreateEducationsExperiencesEtudiantsTable extends Migration
             $table->bigIncrements('id');
             
             $table->foreignId('etudiant_id')->constrained('etudiants')->onDelete('cascade');
-            $table->boolean('section_complete')->default(0); // indicate wheter this section is completed or not
 
             // section formations récentes
             $table->json('formations_recentes')->nullable(); // max 3

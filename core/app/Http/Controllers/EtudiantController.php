@@ -158,8 +158,13 @@ class EtudiantController extends Controller
             }
             break;
             case 3: { // A propos
-                
-                return view('etudiant.dossierCandidat')->with(['section_id' => $section_id]);
+                $aProposEtudiant = $etudiant->aProposEtudiant;
+                // check if the a propos etudiants section has been initialized first
+                if (!$aProposEtudiant) {
+                    Log::info('Etudiant '.$etudiant->id.': Initialisation de la section A Propos');
+                    $aProposEtudiant = AProposEtudiant::create(['etudiant_id' => $etudiant->id]);
+                }
+                return view('etudiant.dossierCandidat')->with(['section_id' => $section_id,  'aProposEtudiant' => $aProposEtudiant]);
             }
             break;
             case 4: { // Section Documents
@@ -192,28 +197,31 @@ class EtudiantController extends Controller
             'ville_naissance', 'nationalite', 'coordones', 'code_postal', 'adresse_postale'
         ];
         
-        // Profil completion check
-        $sectionRempli = false;
-
         // Here the validations rules
 
         // Etudiant general informations
         if ($request->filled($sectionGeneral)) {
             
-            $sectionRempli = true;
-            // dd($request->input());
             $etudiant->update($request->only($sectionGeneral));
+            
+            $etudiant->section0_remplie = true;
             $etudiant->save();
+
+            // dd($etudiant->wasChanged());
 
             // move to the next section
             return redirect('etudiant/dossierCandidat?section_id=1');
         
-        } else return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+        } else {
+            $etudiant->section0_remplie = false;
+            $etudiant->save();
+            return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+        }
 
     }
 
     /**
-     * Update the etudiant dossier candidature section 0
+     * Update the etudiant dossier candidature section 1
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -228,29 +236,31 @@ class EtudiantController extends Controller
             'adresse_postale',
             'email'
         ];
-        
-        // Profil completion check
-        $sectionRempli = false;
 
         // Here the validations rules
 
         // Etudiant general informations
         if ($request->has($sectionFields)) { // changed hasFilled to has because somefields are not mandatories
             
-            $sectionRempli = true;
-            // dd($request->input());
             $etudiant->parentsEtudiant->update($request->only($sectionFields));
+            $etudiant->parentsEtudiant->save();
+
+            $etudiant->section1_remplie = true; // Profil completion check
             $etudiant->save();
 
             // move to the next section
             return redirect('etudiant/dossierCandidat?section_id=2');
         
-        } else return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+        } else {
+            $etudiant->section1_remplie = false;
+            $etudiant->save();
+            return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+        }
 
     }
 
     /**
-     * Update the etudiant dossier candidature section 0
+     * Update the etudiant dossier candidature section 2
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -262,35 +272,96 @@ class EtudiantController extends Controller
             'formations_recentes', 'diplomes_recents', 'experiences_professionnelles',
         ];
         
-        // Profil completion check
-        $sectionRempli = false;
-
         // Here the validations rules
 
         // Etudiant general informations
         if ($request->hasAny($sectionFields)) { // changed hasFilled to has because somefields are not mandatories
-            
-            $sectionGeneralesRempli = true;
 
             // filter array to remove the null placeholder hidden input, then map the array to convert each json string sent by javascript to obtain a full json object
             $formations_recentes = array_map('json_decode', array_filter($request->input('formations_recentes')));
             $diplomes_recents = array_map('json_decode', array_filter($request->input('diplomes_recents')));
             $experiences_professionnelles = array_map('json_decode', array_filter($request->input('experiences_professionnelles')));
-
+            
+            // checks if those are given
+            if (!$formations_recentes || !$diplomes_recents ) return back()->withInput(); // experiences_professionnelles is not mandatory
 
             $etudiant->educationsExperiencesEtudiant->update([
-                'formations_recentes' => $formations_recentes, 
-                'diplomes_recents' => $diplomes_recents,
-                'experiences_professionnelles' => $experiences_professionnelles,
+                'formations_recentes' => $formations_recentes ? $formations_recentes : null, // to be sure that the data was changed
+                'diplomes_recents' => $diplomes_recents ? $diplomes_recents : null,
+                'experiences_professionnelles' => $experiences_professionnelles ? $experiences_professionnelles : null,
             ]);
 
+            $etudiant->educationsExperiencesEtudiant->save();
+
+            $etudiant->section2_remplie = $etudiant->educationsExperiencesEtudiant->wasChanged(); // Profil completion check
             $etudiant->save();
 
             // move to the next section
             return redirect('etudiant/dossierCandidat?section_id=3');
         
-        } else return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+        } else {
+            $etudiant->section2_remplie = false;
+            $etudiant->save();
+            return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+        }
+    }
 
+     /**
+     * Update the etudiant dossier candidature section 3
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function storeSection3(Request $request)
+    {   
+        $etudiant = Auth::user()->etudiant;
+
+        $sectionFields = [
+            'langue_arabe', 'langue_francais', 'langue_anglais', 
+            'langue_espagnol', 'langue_allemand', 'langue_autres',
+            'sejours_etranger', 'pays_sejours_etranger',
+            'loisirs', 'sports', 'autres_activites', 'motivations_candidatures', 'projets_carriere'
+        ];
+        
+
+        // Here the validations rules
+        
+        // Etudiant general informations
+        if ($request->hasAny($sectionFields)) { // changed hasFilled to has because somefields are not mandatories
+
+            $inputs = $request->only($sectionFields); // to merge
+
+            if ($request->missing('langue_arabe') && $request->missing('langue_francais') && $request->missing('langue_anglais') && $request->missing('langue_espagnol') && $request->missing('langue_allemand')) return back()->withInput(); // one langage is required at least
+            // dd($inputs);
+            $langue_arabe = $request->has('langue_arabe') ? true : false;
+            $langue_francais = $request->has('langue_francais') ? true : false;
+            $langue_anglais = $request->has('langue_anglais') ? true : false;
+            $langue_espagnol = $request->has('langue_espagnol') ? true : false;
+            $langue_allemand = $request->has('langue_allemand') ? true : false;
+
+            // $sejours_etranger = $request->has('sejours_etranger') ? true : false;
+
+            $data_updates = array_merge($inputs, [
+                'langue_arabe' => $langue_arabe,
+                'langue_francais' => $langue_francais,
+                'langue_anglais' => $langue_anglais,
+                'langue_espagnol' => $langue_espagnol,
+                'langue_allemand' => $langue_allemand,
+            ]);
+
+            $etudiant->aProposEtudiant->update($data_updates);
+            $etudiant->aProposEtudiant->save();
+
+            $etudiant->section3_remplie = true; // Profil completion check
+            $etudiant->save();
+
+            // move to the next section
+            return redirect('etudiant/dossierCandidat?section_id=4');
+        
+        } else {
+            $etudiant->section3_remplie = false;
+            $etudiant->save();
+            return back()->withInput(); // ->withErrors(['name.required', 'Name is required']);
+        }
     }
     
 }

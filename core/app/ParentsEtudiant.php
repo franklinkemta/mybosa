@@ -19,13 +19,7 @@ class ParentsEtudiant extends Model
         'adresse_postale',
         'email'
     ];
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $garded = ['section_complete'];
-
+    
     /**
      * Get the etudiant record associated with the model.
      */

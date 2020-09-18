@@ -17,22 +17,21 @@ class CreateAProposEtudiantsTable extends Migration
             $table->bigIncrements('id');
             
             $table->foreignId('etudiant_id')->constrained('etudiants')->onDelete('cascade');
-            $table->boolean('section_complete')->default(0); // indicate wheter this section is completed or not
 
             $table->boolean('langue_arabe')->default(0); //
             $table->boolean('langue_francais')->default(0); //
             $table->boolean('langue_anglais')->default(0); //
             $table->boolean('langue_espagnol')->default(0); //
             $table->boolean('langue_allemand')->default(0); //
-            $table->string('langue_autre')->nullable(); //
+            $table->string('langue_autres')->nullable(); //
 
-            $table->boolean('sejours_etranger')->default(0); //
+            $table->boolean('sejours_etranger')->nullable(); //
             $table->string('pays_sejours_etranger')->nullable(); //
 
             $table->string('loisirs')->nullable(); //
             $table->string('sports')->nullable(); //
             $table->string('autres_activites')->nullable(); //
-            $table->string('motivation_candidature')->nullable(); //
+            $table->string('motivations_candidatures')->nullable(); //
             $table->string('projets_carriere')->nullable(); //
 
 

@@ -82,7 +82,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Mot de passe') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" placeholder="Entrer votre mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" pattern=".{6,}" title="6 Caractères aumoins" placeholder="Entrer votre mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -96,7 +96,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmer mot de passe') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" placeholder="Entrer votre mot de passe" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" pattern=".{6,}" title="6 Caractères aumoins" placeholder="Entrer votre mot de passe" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
                         

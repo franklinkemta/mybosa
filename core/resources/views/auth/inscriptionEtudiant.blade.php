@@ -78,7 +78,7 @@
             
                 <input type="email" name="email" placeholder="Entrer votre Email" value="{{ old('email') }}" required autocomplete="email"><br>
                 
-                <input type="password" name="password" placeholder="Entrer votre mot de passe" name="password" required autocomplete="new-password"><br>
+                <input type="password" pattern=".{6,}" title="6 Caractères aumoins" name="password" placeholder="Entrer votre mot de passe" name="password" required autocomplete="new-password"><br>
                 
                 <input id="password-confirm" type="password"  name="password_confirmation" placeholder="Confirmer votre mot de passe"  required autocomplete="new-password" required><br>
             <button type="submit" value="submit" id="submit" name="submit">S'inscrire</button>

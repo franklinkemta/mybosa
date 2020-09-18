@@ -21,6 +21,7 @@
     @if (Route::currentRouteName() == 'selectionFormationsEtudiant')
       <link rel="stylesheet" href="{{ asset('css/bs-stepper.min.css') }}">
     @endif
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/etudiant.css') }}">
     <title>{{ config('app.name').' - '.$title }}</title>
   </head>

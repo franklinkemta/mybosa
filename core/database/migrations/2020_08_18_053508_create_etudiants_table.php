@@ -22,7 +22,13 @@ class CreateEtudiantsTable extends Migration
             $table->string('ville_residence')->nullable();
             $table->string('telephone', 30);
             $table->json('selection_formations')->nullable();
-            $table->boolean('profil_complet')->default(0);
+
+            // section completion checks
+            $table->boolean('section0_remplie')->default(0); // indicate wheter section infos generale is completed or not
+            $table->boolean('section1_remplie')->default(0); // indicate wheter section parents is completed or not
+            $table->boolean('section2_remplie')->default(0); // indicate wheter section educations experiences is completed or not
+            $table->boolean('section3_remplie')->default(0); // indicate wheter section a propos is completed or not
+            $table->boolean('section4_remplie')->default(0); // indicate wheter section documents is completed or not
 
             // details generaux etudiant
             $table->enum('type_piece_identite', ['PASSEPORT', 'C.I.N', 'C.I'])->nullable();

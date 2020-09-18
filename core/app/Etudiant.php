@@ -29,7 +29,11 @@ class Etudiant extends Model
      *
      * @var array
      */
-    protected $garded = ['user_id', 'profil_complet'];
+    protected $garded = [
+        'user_id', 'section0_remplie', 
+        'section1_remplie', 'section2_remplie',
+        'section3_remplie', 'section4_remplie'
+    ];
 
     // store data as JSON and retrieve them as PHP array
     // https://laravel.com/docs/5.2/eloquent-mutators#attribute-casting
@@ -76,5 +80,39 @@ class Etudiant extends Model
     public function aProposEtudiant()
     {
         return $this->hasOne('App\AProposEtudiant');
+    }
+
+    /**
+     * Get the etudiant's nom complet.
+     *
+     * @return string
+     */
+    public function getNomCompletAttribute()
+    {
+        return "{$this->prenom} {$this->nom}";
+    }
+
+    /**
+     * Set the etudiant's nom.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    /*
+    public function setNomAttribute($value)
+    {
+        $this->attributes['nom'] = ucfirst($value);
+    }
+    */
+
+    /**
+     * Get the etudiant's profil complet.
+     *
+     * @return string
+     */
+    public function getProfilCompletAttribute()
+    {   
+        // return if all the sections were edited
+        return $this->section0_remplie && $this->section1_remplie && $this->section2_remplie && $this->section3_remplie && $this->section4_remplie;
     }
 }
