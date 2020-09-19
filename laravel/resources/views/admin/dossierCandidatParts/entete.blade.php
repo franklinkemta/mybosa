@@ -1,4 +1,4 @@
-<div class="col-md-12" style="padding:0">
+<div class="col-12" style="padding:0">
     <div class="card bg-dark text-white" >
         <img class="card-img"  src="{{ asset('images/home.jpeg') }}" alt="Card image">
         <div class="card-img-overlay">
@@ -15,7 +15,7 @@
         </div>
     </div>
 </div>
-<div class="col-md-12" style="margin-top: 10%">
+<div class="col-12" style="margin-top: 10%">
     <div class="card" >
         
         <div class="card-header" style="background-color: #825D63">

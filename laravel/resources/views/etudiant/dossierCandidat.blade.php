@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row justify-content-center " style="height: 100% !important;">
         
-        <div class="col-md-10">
+        <div class="col-10">
             <div class="card  mt-2">
                 <div class="card-header text-center">
                     <b>MON DOSSIER CANDIDAT</b>

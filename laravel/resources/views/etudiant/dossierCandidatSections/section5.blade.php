@@ -5,7 +5,7 @@
 ?>
 
 <div class="card-body justify-content-center text-center" style="min-height:60vh;">
-    <h5 > Statut du dossier </h5> 
+    -- <b > STATUS</b>  -- 
     <p class="my-4">
             @if ($etudiant->profil_complet)
                 @if ($choix_formation)
@@ -65,8 +65,8 @@
 
 <div class="card-footer">
     <div class="form-group row mb-0 text-center">
-        <div class="col-md-12 ">
-            Verification du dossier candidat
+        <div class="col-md-12">
+             <b class=""> <i> MATRICULE: #{{ $etudiant->id }}</i> </b> 
         </div>
     </div>
 </div>

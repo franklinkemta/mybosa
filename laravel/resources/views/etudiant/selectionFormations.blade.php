@@ -4,7 +4,7 @@
 
 <div class="container-fluid" >
     <div class="row justify-content-center text-center" style="height: 100% !important;">
-        <div class="col-md-10 mt-3">
+        <div class="col-10 mt-3">
             <div class="card" >
                 <div class="card-header">
                     

@@ -1,6 +1,7 @@
 @extends('etudiant.layout', ['title' => 'Accueil'])
 <?php 
-    $selection_formations =  Auth::user()->etudiant->selection_formations;
+    $etudiant = Auth::user()->etudiant;
+    $selection_formations =  $etudiant->selection_formations;
     $choix_formation = $selection_formations && count($selection_formations) != 0;
 ?>
 
@@ -8,7 +9,7 @@
 <div class="container">
     <div class="row justify-content-center text-center" style="height: 100% !important">
         
-        <div class="col-md-10 mt-2">
+        <div class="col-10 mt-2">
             <div class="card">
                 <div class="card-header">
                     <b>Bienvenue sur MyBosa !</b>
@@ -21,7 +22,7 @@
                         </div>
                     @endif
                     <h6> 
-                        {{ __('Hello') }} <b>  <i class="fa fa-graduation-cap"></i> {{ Auth::user()->etudiant->prenom }} </b>
+                        {{ __('Hello') }} <b>  <i class="fa fa-graduation-cap"></i> {{ $etudiant->prenom }} </b>
                         @if ($choix_formation)
                             Voici votre sélection de formation !
                         @else
@@ -64,7 +65,7 @@
                         </table>
                         <a href="{{ route('selectionFormationsEtudiant') }}" class="btn btn-light mb-3"> <i class="fa fa-edit"></i> Modifier ma sélection de formation </a>
                         <h6> <b> Prochaine étape > </b> 
-                            @if (Auth::user()->etudiant->profil_complet)
+                            @if ($etudiant->profil_complet)
                                 Soumettre ma candidature 
                             @else
                                 Completer mon dossier candidat
@@ -77,7 +78,7 @@
                 </div>
 
                 <div class="card-footer" style="min-height: 60px">
-                    @if (!Auth::user()->etudiant->profil_complet)
+                    @if (!$etudiant->profil_complet)
                         <a href="{{ route('dossierCandidatEtudiant') }}" class="btn btn-outline-info my-2"> <i class="fa fa-folder-o"></i> <b>Editer mon dossier de candidat</b> </a>
                     @else
                         @if ($choix_formation) 

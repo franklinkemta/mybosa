@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center text-center">
-        <div class="col-md-8">
+        <div class="col-8">
             <div class="card">
                 <div class="card-header text-white _bg-success" style="background-color: #4FAC2E"><strong>{{ __('Connexion') }}</strong></div>
 

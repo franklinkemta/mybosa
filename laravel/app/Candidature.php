@@ -11,6 +11,8 @@ class Candidature extends Model
 {   
     use SoftDeletes; // can be trashed 
 
+    // public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -63,4 +65,10 @@ class Candidature extends Model
     {
         return $query->where('archive', 1);
     }
+
+    /*
+    protected $dates = [
+        'created_at', 'upadted_at', 'seen_at'
+    ];
+    */
 }
