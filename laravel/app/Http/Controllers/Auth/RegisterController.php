@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+
+// for the registered method
+use \Illuminate\Http\Request;
+
 // import Models for creating account profiles depending on the account role type
 use App\User;
 use App\Etudiant;
@@ -59,20 +63,26 @@ class RegisterController extends Controller
             if ($data['typeCompte'] == 'ETUDIANT') $validationRules = array_merge($validationRules,[
                 'nom' => ['required', 'string', 'max:255'],
                 'prenom' => ['required', 'string', 'max:255'],
-                'pays' => ['required', 'string', 'max:255'],
-                'phone' => ['required', 'string', 'max:255'],
+                'pays_residence' => ['required', 'string', 'max:255'],
+                'telephone' => ['required', 'string', 'max:255'],
             ]);
 
             if ($data['typeCompte'] == 'CONSEILLER') $validationRules = array_merge($validationRules,[
                 'nom' => ['required', 'string', 'max:255'],
+                'prenom' => ['required', 'string', 'max:255'],
+                'pays_residence' => ['required', 'string', 'max:255'],
+                'telephone' => ['required', 'string', 'max:255'],
             ]);
 
             if ($data['typeCompte'] == 'ETABLISSEMENT') $validationRules = array_merge($validationRules,[
                 'nom' => ['required', 'string', 'max:255'],
+                'prenom' => ['required', 'string', 'max:255'],
+                'pays_residence' => ['required', 'string', 'max:255'],
+                'telephone' => ['required', 'string', 'max:255'],
             ]);
 
             return Validator::make($data, $validationRules);
-        } else dd('Authorization error: Please specify the account type you want to register for');
+        } else abort(403, 'Authorization error: Please specify the account type you want to register for'); // dd('');
         
     }
 
@@ -84,13 +94,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
+        // dd($data['typeCompte']);
+
         $user = User::create([
             'typeCompte' => $data['typeCompte'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return $user;
+    }
+
+    // Added to save user typeCompte data after registration
+    protected function registered(Request $request, $user)
+    {   
+        $data = $request->input();
+
         // Register user account data depending on the role 
-        // $etudiant = 
         if ($data['typeCompte'] == 'ETUDIANT') Etudiant::create([
             'user_id' => $user->id,
             'nom' => $data['nom'],
@@ -98,7 +118,5 @@ class RegisterController extends Controller
             'pays_residence' => $data['pays_residence'],
             'telephone' => $data['telephone'],
         ]);
-
-        return $user;
     }
 }

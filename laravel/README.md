@@ -42,3 +42,6 @@ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock
 
 # HOW TO CLEAR COMPILED FILES SO THAT THE CHANGES MADE ON AppServiceProvider works
 # https://stackoverflow.com/questions/28676365/laravel-appserviceprovider-is-not-called
+
+# HOW TO CUSTOMIZE LARAVEL REGISTRATION
+# https://laraveldaily.com/9-things-you-can-customize-in-laravel-registration/

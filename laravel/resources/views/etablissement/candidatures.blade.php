@@ -1,4 +1,4 @@
-@extends('admin.layout', ['title' => 'Candidatures'])
+@extends('etablissement.layout', ['title' => 'Candidatures'])
 
 @section('content')
 <div class="container">
@@ -19,8 +19,6 @@
                                     <th scope="col">Etudiant</th>
                                     <th scope="col">Formations</th>
                                     <th scope="col">Niveau</th>
-                                    <th scope="col">Etablissement</th>
-                                    <th scope="col">Ville</th>
                                     <th scope="col">Etat</th>
                                     <th scope="col">Remarque</th>
                                     <th scope="col">Date</th>
@@ -40,23 +38,13 @@
                                             {{ $candidature['intitule_filiere'] }}
                                         </td>
                                         <td scope="row">{{ ucwords(str_replace('_', ' ', strtolower($candidature['diplome_niveau']))) }} </td>
-                                        <td scope="row">
-                                            <btn class="btn btn-dark btn-sm" 
-                                                data-toggle="tooltip" 
-                                                data-html="true" 
-                                                title="{{ $candidature['etablissement_nom'] }}" 
-                                                disabled>
-                                                {{ $candidature['etablissement_sigle'] }}
-                                            </btn>
-                                        </td>
-                                        <td scope="row">{{ ucfirst(strtolower($candidature['etablissement_ville'])) }}</td>
                                         <td scope="row">{{ ucfirst(strtolower($candidature['etat'])) }}</td>
                                         <td scope="row">{{ $candidature['remarque'] }}</td>
                                         <td scope="row">
                                             {{ $candidature['created_at'] }}
                                         </td>
                                         <td scope="row">
-                                            <a target="_blank" href="{{ route('dossierCandidatureAdmin', $candidature['id']) }}" class="btn btn-sm btn-outline-dark"> <i class="fa fa-folder-open-o"></i> </a>
+                                            <a target="_blank" href="{{ route('dossierCandidatureEtablissement', $candidature['id']) }}" class="btn btn-sm btn-outline-dark"> <i class="fa fa-folder-open-o"></i> </a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -32,7 +32,7 @@
             <li class="co-menu"><a href="{{ url('/conseiller') }}">conseiller d'orientation</a></li>
         </ul>  
         
-        <p class="connexionPc"><span  class="connexion connect_mb">Connexion</span>
+        <p class="connexionPc"> <span href="{{ route('login') }}" id="login_btn" class="connexion connect_mb">Connexion</span>
         <span class="inscription"><a href="{{ route('register') }}" class="inscriptionPc" >Ouvrir un compte</a></span></p>
         
     </nav>

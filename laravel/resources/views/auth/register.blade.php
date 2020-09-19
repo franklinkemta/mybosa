@@ -5,13 +5,21 @@
     <div class="row justify-content-center text-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-white _bg-success" style="background-color: #4FAC2E"> <strong> {{ __('Creer un compte étudiant') }} </strong></div>
-
+                <div class="card-header text-white _bg-success" style="background-color: #4FAC2E"> <strong> {{ __('Creer votre compte sur MyBosa') }} </strong></div>
+                
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        <input type="hidden" name="typeCompte" value="ETUDIANT">
 
+                        <div class="form-group row">
+                            <label for="nom" class="col-md-4 col-form-label text-secondary text-md-right"><i class="fa fa-arrow-right"></i> </label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="typeCompte" id="typeCompte" required value="{{ old('typeCompte') }}">
+                                    <option disabled value selected>Je crée un compte pour </option>
+                                    @include('partials.selectTypeCompteOptions', ['selected' => old('typeCompte') ])
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="nom" class="col-md-4 col-form-label text-md-right">{{ __('Nom') }}</label>
 
@@ -45,7 +53,7 @@
                             <div class="col-md-6">
                                 <select class="form-control" name="pays_residence" id="pays_residence" required value="{{ old('pays_residence') }}">
                                     <option disabled value selected>Sélectionner le pays</option>
-                                    @include('partials.selectPaysOptions', ['selected' => '' ])
+                                    @include('partials.selectPaysOptions', ['selected' => old('pays_residence') ])
                                 </select>
                             </div>
                         </div>

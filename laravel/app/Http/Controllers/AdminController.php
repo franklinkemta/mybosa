@@ -95,7 +95,7 @@ class AdminController extends Controller
     }
 
     public function reglages() {
-        // $admin = Auth::user()->admin;
+        $admin = Auth::user()->admin;
         return view('admin.reglages')->with('admin', $admin);
     }
 

@@ -12,7 +12,7 @@ class Etudiant extends Model
      * @var array
      */
     protected $fillable = [
-        'nom', 'prenom', 'pays_residence', 'telephone',
+        'user_id', 'nom', 'prenom', 'pays_residence', 'telephone',
         'type_piece_identite',
         'numero_piece_identite',
         'date_naissance',
@@ -30,7 +30,7 @@ class Etudiant extends Model
      * @var array
      */
     protected $garded = [
-        'user_id', 'section0_remplie', 
+        'section0_remplie', 
         'section1_remplie', 'section2_remplie',
         'section3_remplie', 'section4_remplie'
     ];

@@ -1,5 +1,10 @@
 
 $(document).ready(function(){
+  login = function () {
+     // go to login instead of showing popup
+    document.location = $('#login_btn').attr('href');
+  }
+
   $('.closeMenu').click(function(){
     $('.menuMobile').css("display","none");
   });
@@ -20,7 +25,8 @@ $(document).ready(function(){
   $('.connect_mb').click(function(){
 
     console.log("Hey You clicked");
-    $('.sign_in_form').css("display","block");
+    login();
+    // $('.sign_in_form').css("display","block");
 
   });
 
@@ -141,7 +147,8 @@ $(document).ready(function(){
   });
   $('.connexionXs').click(
     function(){
-      $(".sign_in_form").css("display","block");
+      login();
+      // $(".sign_in_form").css("display","block");
 
     }
   );

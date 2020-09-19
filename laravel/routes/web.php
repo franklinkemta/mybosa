@@ -73,3 +73,11 @@ Route::prefix('admin')->group(function () {
     Route::get('reglages', 'AdminController@reglages')->name('reglagesAdmin');
 });
 
+Route::prefix('etablissement')->group(function () {
+    Route::get('dossierCandidature/{id}', 'EtablissementController@dossierCandidature')->name('dossierCandidatureEtablissement');
+    Route::get('candidatures', 'EtablissementController@candidatures')->name('candidaturesEtablissement');
+    Route::get('etudiants', 'EtablissementController@etudiants')->name('etudiantsEtablissement');
+    Route::get('formations', 'EtablissementController@formations')->name('formationsEtablissement');
+    Route::get('reglages', 'EtablissementController@reglages')->name('reglagesEtablissement');
+});
+

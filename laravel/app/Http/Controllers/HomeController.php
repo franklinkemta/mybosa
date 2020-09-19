@@ -33,12 +33,30 @@ class HomeController extends Controller
         $user = Auth::user();
         $typeCompte = $user->typeCompte;
         
+        // Auth::logout();
+        // dd($typeCompte);
         switch ($typeCompte) {
             case 'ETUDIANT': {
+                $etudiant = Auth::user()->etudiant;
+
+                // check if the account has been validated
+                if (!$etudiant) {
+                    Auth::logout();
+                    abort(403, '[E1] Unauthorized action. Ce compte n\'existe pas ou n\'a pas encore été validé !');
+                }
                 return view('etudiant.home');
             }
             break;
             case 'ADMIN': {
+
+                $admin = Auth::user()->admin;
+                
+                // check if the account has been validated
+                if (!$admin) {
+                    Auth::logout();
+                    abort(403, '[E0] Unauthorized action. Ce compte n\'existe pas ou n\'a pas encore été validé !');
+                }
+
                 // get all the stats
                 $count_candidatures = Candidature::count();
                 $count_etutiants = Etudiant::count();
@@ -53,20 +71,53 @@ class HomeController extends Controller
                     'formations' => $count_formations,
                     'diplomes' => $count_diplomes,
                 );
-                return view('admin.home')->with('statistiques', $statistiques);;
+                return view('admin.home')->with('statistiques', $statistiques);
             }
             break;
             case 'ETABLISSEMENT': {
-                return view('etablissement.home');
+                
+                $etablissement = Auth::user()->etablissement;
+
+                // check if the account has been validated
+                if (!$etablissement) {
+                    Auth::logout();
+                    abort(403, '[E2] Unauthorized action. Ce compte n\'existe pas ou n\'a pas encore été validé !');
+                }
+                
+                // get all the stats for the etablissement
+                $count_candidatures = Candidature::where('etablissement_id', $etablissement->id)->count();
+                
+                $count_etutiants = Candidature::where('candidatures.id', $etablissement->id)
+                                                ->leftJoin('etudiants', 'etudiants.id', 'candidatures.etudiant_id')
+                                                ->count();
+                                                
+                $count_formations = Formation::where('etablissement_id', $etablissement->id)->count();
+
+                $statistiques = array(
+                    'candidatures' => $count_candidatures,
+                    'etudiants' => $count_etutiants,
+                    'formations' => $count_formations,
+                );
+                return view('etablissement.home')->with('statistiques', $statistiques);
             }
             break;
             case 'CONSEILLER': {
-                return view('conseiller.home');
+                $conseiller = Auth::user()->conseiller;
+
+                // check if the account has been validated
+                if (!$conseiller) {
+                    Auth::logout();
+                    abort(403, '[E3] Unauthorized action. Ce compte n\'existe pas ou n\'a pas encore été validé !');
+                }
+                return back();
+                // return view('conseiller.home');
             }
             break;
         
             default: {
-                return back(); // in case of error
+                Auth::logout();
+                abort(403, '[E4] Unauthorized action. Ce compte n\'existe pas ou a été supprimé !');
+                // return back(); // in case of error
             }
             break;
         }

@@ -1,4 +1,4 @@
-@extends('admin.layout', ['title' => 'Réglages plateforme'])
+@extends('etablissement.layout', ['title' => 'Gestion du compte'])
 
 @section('content')
 <div class="container">
@@ -7,7 +7,7 @@
         <div class="col-12 mt-2">
             <div class="card ">
                 <div class="card-header">
-                    <b>Réglages de la plateforme</b>
+                    <b>Réglages de votre compte</b>
                 </div>
 
                 <div class="card-body" style="min-height:70vh;">

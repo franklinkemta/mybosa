@@ -3,7 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center text-center">
-        <div class="col-8">
+        <div class="col-12 mb-3">
+            <img src="{{ asset('logo.jpeg') }}" alt="" style="width: 100px; height: 100px;">
+            <h4 class="mt-2">Connexion à votre espace MyBosa</h4>
+        </div>
+        <div class="col-6">
             <div class="card">
                 <div class="card-header text-white _bg-success" style="background-color: #4FAC2E"><strong>{{ __('Connexion') }}</strong></div>
 
