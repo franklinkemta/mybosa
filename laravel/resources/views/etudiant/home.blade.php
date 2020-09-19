@@ -76,7 +76,7 @@
                     @endif
                 </div>
 
-                <div class="card-footer">
+                <div class="card-footer" style="min-height: 60px">
                     @if (!Auth::user()->etudiant->profil_complet)
                         <a href="{{ route('dossierCandidatEtudiant') }}" class="btn btn-outline-info my-2"> <i class="fa fa-folder-o"></i> <b>Editer mon dossier de candidat</b> </a>
                     @else

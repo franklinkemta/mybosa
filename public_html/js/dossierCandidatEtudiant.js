@@ -41,7 +41,7 @@ $(document).ready(function () {
   addFormation = function() {
     
     const regex_annee = RegExp(/^20\d{2}-20\d{2}$/, 'g'); // regex for 20AA-20AA
-    const regex_etablissement = RegExp(/^[a-zA-Z\s]*$/, 'g'); // regex for other text cells
+    const regex_etablissement = RegExp(/^[a-zA-Z0-9\s]*$/, 'g'); // regex for other text cells
     const regex_filiere = RegExp(/^[a-zA-Z\s]*$/, 'g'); // regex for other text cells
     const regex_niveau = RegExp(/^[a-zA-Z0-9\s]*$/, 'g'); // regex for other text cells
     const regex_moyenne = RegExp(/^[0-9]*.[0-9]*$/, 'g'); // regex for moyenne as a float

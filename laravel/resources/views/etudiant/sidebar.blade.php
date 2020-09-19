@@ -10,7 +10,7 @@
         <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">
             <i class="fa fa-th-large mr-2"></i>
-                Accueil : Etudiant
+                Accueil étudiant
             </a>
         </li>
         <li class="nav-item">

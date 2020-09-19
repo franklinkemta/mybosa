@@ -48,6 +48,12 @@ public_path('storage') => storage_path('app')
 ### Made a slymlink of the <APP_ROOT>/laravel/storage/app to 
 php artisan storage:link
 
+### IF YOU HAVE PERMISSION ERRORS : ABOUT storage content access you may consider giving these permissions to the folder
+
+chmod -R gu+w storage
+chmod -R guo+w storage
+php artisan cache:clear
+
 ### APPLY CHANGES ON COMPOSER AND ARTISAN
 ### From the <APP_ROOT>/laravel folder run
 composer dump-auto

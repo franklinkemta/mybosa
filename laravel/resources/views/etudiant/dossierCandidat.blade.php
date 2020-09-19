@@ -9,7 +9,7 @@
     );
     $current_section = $sections[$section_id];
 ?>
-@extends('etudiant.layout', ['title' => 'Mon dossier candidat > '.$current_section['name']])
+@extends('etudiant.layout', ['title' => 'Mon dossier candidat - '.$current_section['name']])
 
 @section('content')
 <div class="container">

@@ -18,7 +18,7 @@
             @endif
         </p>
     @if ($choix_formation)
-        <table class="table table-bordered" style="min-height:200px;">
+        <table class="table table-bordered" style="min-height:100px;">
             <thead class="thead-light">
                 <tr> 
                     <th scope="col">Niveau</th> 
@@ -49,13 +49,13 @@
             </tbody>
         </table>
         <a href="{{ route('selectionFormationsEtudiant') }}" class="btn btn-light mb-3"> <i class="fa fa-edit"></i> Modifier ma sélection de formation </a>
-        <h6> <b> Prochaine étape > </b> 
+        <p> <b> Prochaine étape > </b> <br>
             @if ($etudiant->profil_complet)
-                Soumettre ma candidature 
+                <a href="{{ route('inscriptionSelectionFormationsEtudiant') }}" class="btn text-white mt-3" style="background-color: #4FAC2E"> <i class="fa fa-edit"></i> Soumettre ma candidature  </a>
             @else
                 Assurez vous d'avoir rempli chaque section de votre dossier
             @endif
-        </h6>
+        </p>
     @else
         <p> Un instant {{ $etudiant->nom_complet }} ! Il semble que vous n'ayez pas encore fait de sélection de formation </p>
         <a href="{{ route('selectionFormationsEtudiant') }}" class="btn btn-outline-info my-2"> <i class="fa fa-edit"></i> Faire ma sélection maintenant </a>

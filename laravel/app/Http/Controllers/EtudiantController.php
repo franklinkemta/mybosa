@@ -384,26 +384,19 @@ class EtudiantController extends Controller
     public function storeSection4(Request $request)
     {   
         $etudiant = Auth::user()->etudiant;
-        
-        // dd($request->files());
 
-        // Here the validations rules
-        
         $sectionFields = [
             'photo', 'piece_identite', 'autres_documents',
         ];
 
-        // dd($request->hasAny($sectionFields));
-
+        // Here the validations rules
         $validator = Validator::make($request->all(), [
             'photo' => 'sometimes|file|mimes:jpeg,png|max:2000|required', // 2 Mo
             'piece_identite' => 'sometimes|file|mimes:jpeg,png,pdf|max:2000|required', // 2 Mo
             'autres_documents' => 'sometimes|file|mimes:pdf,zip|max:5000|required', // 5 Mo
         ]);
 
-        // dd($validator->fails());
-
-        if ($request->hasAny($sectionFields) && !$validator->fails()) {
+        if (!$validator->fails()) {
         
             $documentsEtudiant = $etudiant->documentsEtudiant;
 
@@ -444,8 +437,10 @@ class EtudiantController extends Controller
             // move to the last section
             return redirect('etudiant/dossierCandidat?section_id=5');
         } else {
-            $etudiant->section4_remplie = false;
-            $etudiant->save();
+            if ($request->hasAny($sectionFields)) { // only if user tryed to edit the section
+                $etudiant->section4_remplie = false;
+                $etudiant->save();
+            }
             return back()
                         ->withErrors($validator)
                         ->withInput();

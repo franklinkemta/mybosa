@@ -1,6 +1,6 @@
 <?php 
     $options = array(
-        ['value' => 'PASSEPORT', 'name' => 'Passport'],
+        ['value' => 'PASSEPORT', 'name' => 'Passeport'],
         ['value' => 'C.I.N', 'name' => 'C.I.N'],
         ['value' => 'C.I', 'name' => 'C.I' ],
     );
