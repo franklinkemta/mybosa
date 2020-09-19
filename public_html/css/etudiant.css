@@ -1,0 +1,48 @@
+.sidebar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 100;
+    padding: 10px 0 0 0;
+    border-right: 1px solid #d3d3d3;
+    background-color: #25566E;
+  }
+  
+  .left-sidebar {
+    position: sticky;
+    top:0;
+    height: calc(100vh - 10px);
+  }
+  
+  .sidebar-nav li .nav-link {
+    color: #FFF;
+    font-weight: 500;
+  }
+
+  .sidebar-nav li .nav-link.navbar-brand {
+    padding: 40px 0 40px 0 !important;
+  }
+
+  .sidebar-nav li .nav-link.active {
+    background-color: #000;
+  }
+  .step-trigger {
+    padding: 0 10px !important;
+    pointer-events: none;
+  }
+  .step-trigger[aria-selected="true"]{
+    background-color:#25566E !important; /* #4FAC2E */
+    border-radius: 0;
+    color: #FFF;
+  }
+
+  .section-candidat {
+    text-decoration: none;
+    color: #000000 !important;
+  }
+
+  .section-candidat.active {
+    font-weight: bold;
+    color: #25566E !important;
+  }
