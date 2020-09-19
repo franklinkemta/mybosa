@@ -1,7 +1,7 @@
 <?php 
     $options = array(
-        ['value' => 'Marocain(e)', 'name' => 'Marocain(e)'],
-        ['value' => 'Camerounais(e)', 'name' => 'Camerounais(e)' ],
+        ['value' => 'MAROC', 'name' => 'Marocain(e)'],
+        ['value' => 'CAMEROUN', 'name' => 'Camerounais(e)' ],
     );
 ?>
 

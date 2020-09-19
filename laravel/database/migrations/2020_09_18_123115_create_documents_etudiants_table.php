@@ -20,7 +20,9 @@ class CreateDocumentsEtudiantsTable extends Migration
 
             $table->string('photo')->nullable();
 
-            $table->string('passeport')->nullable();
+            $table->string('piece_identite')->nullable();
+
+            $table->string('autres_documents')->nullable();
 
             $table->timestamps();
         });

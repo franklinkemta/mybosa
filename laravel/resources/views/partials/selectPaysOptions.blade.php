@@ -1,7 +1,7 @@
 <?php 
     $options = array(
         ['value' => 'MA', 'name' => 'Maroc'],
-        ['value' => 'CMR', 'name' => 'Cameroun' ],
+        ['value' => 'CM', 'name' => 'Cameroun' ],
     );
 ?>
 

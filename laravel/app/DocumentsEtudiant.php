@@ -17,7 +17,7 @@ class DocumentsEtudiant extends Model
      */
     protected $fillable = [
         'etudiant_id',
-        'photo', 'passeport',
+        'photo', 'piece_identite', 'autres_documents',
     ];
     
     /**
@@ -35,7 +35,26 @@ class DocumentsEtudiant extends Model
      */
     public function getPhotoUrlAttribute()
     {   
-        // dd($this->photo);
-        return Storage::exists($this->photo) ? Storage::url($this->photo) : 'images/avatar_place_holder.png'; 
+        return Storage::exists($this->photo) ? Storage::url($this->photo) : null; 
+    }
+
+    /**
+     * Get the etudiant's piece_identite url.
+     *
+     * @return string
+     */
+    public function getPieceIdentiteUrlAttribute()
+    {   
+        return Storage::exists($this->piece_identite) ? Storage::url($this->piece_identite) : null; 
+    }
+
+    /**
+     * Get the etudiant's autres_documents url.
+     *
+     * @return string
+     */
+    public function getAutresDocumentsUrlAttribute()
+    {   
+        return Storage::exists($this->autres_documents) ? Storage::url($this->autres_documents) : null; 
     }
 }

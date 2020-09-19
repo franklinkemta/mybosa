@@ -390,24 +390,26 @@ class EtudiantController extends Controller
         // Here the validations rules
         
         $sectionFields = [
-            'photo', 'passeport',
+            'photo', 'piece_identite', 'autres_documents',
         ];
 
         // dd($request->hasAny($sectionFields));
 
         $validator = Validator::make($request->all(), [
-            'photo' => 'sometimes|file|mimes:jpeg,bmp,png|max:2000|required', // 2 Mo
-            'passeport' => 'sometimes|file|mimes:jpeg,bmp,png,pdf|max:2000|required', // 2 Mo
+            'photo' => 'sometimes|file|mimes:jpeg,png|max:2000|required', // 2 Mo
+            'piece_identite' => 'sometimes|file|mimes:jpeg,png,pdf|max:2000|required', // 2 Mo
+            'autres_documents' => 'sometimes|file|mimes:pdf,zip|max:5000|required', // 5 Mo
         ]);
 
         // dd($validator->fails());
 
         if ($request->hasAny($sectionFields) && !$validator->fails()) {
-            // dd('ici2');
+        
             $documentsEtudiant = $etudiant->documentsEtudiant;
 
             $photo = $documentsEtudiant->photo;
-            $passeport = $documentsEtudiant->passeport;
+            $piece_identite = $documentsEtudiant->piece_identite;
+            $autres_documents = $documentsEtudiant->autres_documents;
 
             if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
                 // $photo = $request->file('photo')->store('photos_etudiants'); // , $etudiant->id
@@ -415,15 +417,22 @@ class EtudiantController extends Controller
                 if (Storage::exists($documentsEtudiant->photo)) Storage::delete($documentsEtudiant->photo); // delete old etudiant photo // hope the permissions are goog :-)
             }
             
-            if ($request->hasFile('passeport') && $request->file('passeport')->isValid()) {
-                // $passeport = $request->file('passeport')->store('passeports_etudiants'); // , $etudiant->id
-                $passeport = Storage::putFile('passeports_etudiants', $request->file('passeport'));
-                if (Storage::exists($documentsEtudiant->passeport)) Storage::delete($documentsEtudiant->passeport); Storage::delete($passeport); // delete old etudiant photo // hope the permissions are goog :-)
+            if ($request->hasFile('piece_identite') && $request->file('piece_identite')->isValid()) {
+                // $piece_identite = $request->file('piece_identite')->store('pieces_identites_etudiants'); // , $etudiant->id
+                $piece_identite = Storage::putFile('pieces_identites_etudiants', $request->file('piece_identite'));
+                if (Storage::exists($documentsEtudiant->piece_identite)) Storage::delete($documentsEtudiant->piece_identite); // delete old piece_identite document // hope the permissions are goog :-)
+            }
+            
+            if ($request->hasFile('autres_documents') && $request->file('autres_documents')->isValid()) {
+                // $autres_documents = $request->file('autres_documents')->store('autres_documents_etudiants'); // , $etudiant->id
+                $autres_documents = Storage::putFile('autres_documents_etudiants', $request->file('autres_documents'));
+                if (Storage::exists($documentsEtudiant->autres_documents)) Storage::delete($documentsEtudiant->autres_documents); // delete old etudiant autres_documents // hope the permissions are goog :-)
             }
             
             $data_updates = [
                 'photo' => $photo,
-                'passeport' => $passeport,
+                'piece_identite' => $piece_identite,
+                'autres_documents' => $autres_documents,
             ];
 
             $documentsEtudiant->update($data_updates);
