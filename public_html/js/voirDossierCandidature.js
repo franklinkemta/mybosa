@@ -4,4 +4,9 @@ $(document).ready(function () {
 
     // disable all the inputs events
     $('.disabled').off();
+    $('input').off("select");
+    $('input, select, textarea, label').on("select focus change keypress keyup keydown", function(e) {
+        e.preventDefault();
+        this.blur();
+    })
 })

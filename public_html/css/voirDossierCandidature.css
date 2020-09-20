@@ -1,5 +1,5 @@
 body {
-    font-family: 'Helvetica';
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
     /* font-size: 20px; */
 }
 
@@ -21,6 +21,9 @@ body {
     box-shadow: none;
 }
 
+.title {
+    font-size: 18px !important;
+}
 
 .hide {
     opacity: 0;

@@ -71,8 +71,12 @@
                         </ul>
                     </nav>
                     @include('partials.dossierCandidatureSections.sectionHeader')
-                    <form action="#">
+                    <form action="#" method="post">
                         @include('partials.dossierCandidatureSections.section0')
+                        @include('partials.dossierCandidatureSections.section1')
+                        @include('partials.dossierCandidatureSections.section2')
+                        @include('partials.dossierCandidatureSections.section3')
+                        @include('partials.dossierCandidatureSections.section4')
                     </form>
                     
             </div>

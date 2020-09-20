@@ -1,4 +1,4 @@
-<div class="container px-5">
+<div class="container mt-5 px-5">
 
     <div class="form-group row mt-5 ">
         <label class=" form-check-label col-auto" >  <b>Niveau d'admission : </b></label>
@@ -45,10 +45,13 @@
             <input id="diplome" type="text" placeholder="Diplome à préparer" class="form-control" name="diplome" value="{{ $candidature->diplome_intitule }}">
         </div>
     </div>
-    <hr>
+
+    <hr class="">
+
     <h6>
-        <b class="text-success">Identité</b> <small>(Telle qu'indiquée sur votre pièce d'identité)</small> 
+        <b class="text-success title">Identité</b> <small>(Telle qu'indiquée sur votre pièce d'identité)</small> 
     </h6>
+
     <hr class="hide">
 
     <div class="form-group row">
@@ -230,6 +233,5 @@
             @enderror
         </div>
     </div>
-
 
 </div>
