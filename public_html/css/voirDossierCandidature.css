@@ -23,6 +23,7 @@ body {
 
 .title {
     font-size: 18px !important;
+    color: #499F09 !important;
 }
 
 .shadow {
@@ -34,7 +35,11 @@ body {
 }
 
 .color {
-    color: #499F09;
+    color: #499F09 !important;
+}
+
+.color.white {
+    color: #FFFFFF !important;
 }
 
 .none {
@@ -43,7 +48,7 @@ body {
 }
 
 .bg-color {
-    background-color: #499F09;
+    background-color: #499F09 !important;
 }
 
 .photo_section {
@@ -55,6 +60,7 @@ body {
 #photo {
     float: right;
     margin-top: -70px;
+    margin-right: 30px;
     background-color: #008000;
     height: 167px;
     width: 147px;
@@ -68,4 +74,10 @@ body {
 }
 img, textarea, select, input, label {
     pointer-events: none;
+}
+
+@media print {
+    table thead.bg-color tr > th {
+        background-color: #499F09 !important;
+    }
 }

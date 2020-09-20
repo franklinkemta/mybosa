@@ -37,9 +37,9 @@
                 </span>
             @enderror
         </caption>
-        <thead class="text-white" style="background-color: #4FAC2E !important;">
+        <thead class="text-white bg-color">
             <tr> 
-                <th scope="col">Année</th> 
+                <th class="color white bg-color" scope="col ">Année</th> 
                 <th scope="col">Etablissements</th>
                 <th scope="col">Filières</th>
                 <th scope="col">Niveau</th>
@@ -104,7 +104,7 @@
                 </span>
             @enderror
         </caption>
-        <thead class="text-white" style="background-color: #4FAC2E !important;">
+        <thead class="text-white bg-color">
             <tr> 
                 <th scope="col">Session</th> 
                 <th scope="col">Nature du diplôme</th>
@@ -178,7 +178,7 @@
                 </span>
             @enderror
         </caption>
-        <thead class="text-white" style="background-color: #4FAC2E !important;">
+        <thead class="text-white bg-color" >
             <tr> 
                 <th scope="col">Année</th> 
                 <th scope="col">Poste occupé</th>

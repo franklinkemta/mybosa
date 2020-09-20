@@ -79,5 +79,5 @@ Route::prefix('etablissement')->group(function () {
     Route::get('reglages', 'EtablissementController@reglages')->name('reglagesEtablissement');
 });
 
-Route::get('dossierCandidature/{id}', 'CandidatureController@voirDossierCandidature')->name('voirDossierCandidature');
+Route::get('candidature/{id}', 'CandidatureController@voirDossierCandidature')->name('voirDossierCandidature');
 

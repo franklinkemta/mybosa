@@ -3,7 +3,7 @@
     <h5 style="font-weight: 600;">Convocation MyBosa</h5>
     <hr class="hide">
     <h6>
-        <b class="text-success">Enregistrement MyBosa</b>
+        <b class="text-success color">Enregistrement MyBosa</b>
     </h6>
     <hr class="hide">
     <!-- Form groups -->
