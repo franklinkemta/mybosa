@@ -64,6 +64,14 @@ php artisan optimize
 php artisan serve
 
 ## DEPLOY ON CPANEL
+
+### As mentioned in the documentation https://laravel.com/docs/7.x/deployment
+composer install --optimize-autoloader --no-dev
+# php artisan config:cache # Dont cache config since it can cause your site to bug
+php artisan route:cache
+php artisan view:cache
+
+
 php artisan key:generate
 ### Make a backup of your env config file <APP_ROOT>/laravel/.env
 ### From the <APP_ROOT>/laravel folder run
@@ -73,6 +81,7 @@ cp .env .env.dev
 ### It should be something like <CPANEL_ROOT>/public_html/<*content_of_public_html.zip>
 ### Upload the laravel.zip to the cpanel and extract the archive as it to your server root
 ### Its should be something like <CPANEL_ROOT>/<laravel>
+### Set APP_ENV to production and APP_DEBUG to false on your <CPANEL_ROOT>/<laravel>.env  when everything is OK
 
 ### Then you are done !
 ### Hope it will work well for you :)
