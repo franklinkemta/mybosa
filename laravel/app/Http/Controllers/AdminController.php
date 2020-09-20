@@ -99,21 +99,4 @@ class AdminController extends Controller
         return view('admin.reglages')->with('admin', $admin);
     }
 
-    
-
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function dossierCandidature($id)
-    {   
-        // the current auth is admin
-        $user = Auth::user();
-        if ($user->typeCompte != 'ADMIN') dd('Authorization error : Vous ne pouvez pas éffectuer cette action');
-
-        $candidature = Candidature::findOrFail($id);
-        return view('admin.dossierCandidature', ['candidature' => $candidature]);
-    }
 }

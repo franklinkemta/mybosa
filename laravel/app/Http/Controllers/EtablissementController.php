@@ -98,19 +98,4 @@ class EtablissementController extends Controller
         return view('etablissement.reglages')->with('etablissement', $etablissement);
     }
 
-
-    /**
-     * Show the application settings.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function dossierCandidature($id)
-    {   
-        // the current auth is etablissement
-        $user = Auth::user();
-        if ($user->typeCompte != 'ETABLISSEMENT') dd('Authorization error : Vous ne pouvez pas éffectuer cette action');
-
-        $candidature = Candidature::findOrFail($id);
-        return view('etablissement.dossierCandidature', ['candidature' => $candidature]);
-    }
 }

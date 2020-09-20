@@ -7,7 +7,7 @@
         <div class="col-12 mt-2">
             <div class="card ">
                 <div class="card-header">
-                    <b>Toutes les candidatures</b>
+                    <b>Toutes les candidatures aux formations</b>
                 </div>
 
                 <div class="card-body" style="min-height:70vh;">
@@ -44,7 +44,7 @@
                                             {{ $candidature['created_at'] }}
                                         </td>
                                         <td scope="row">
-                                            <a target="_blank" href="{{ route('dossierCandidatureEtablissement', $candidature['id']) }}" class="btn btn-sm btn-outline-dark"> <i class="fa fa-folder-open-o"></i> </a>
+                                            <a target="_blank" href="{{ route('voirDossierCandidature', $candidature['id']) }}" class="btn btn-sm btn-outline-dark"> <i class="fa fa-folder-open-o"></i> </a>
                                         </td>
                                     </tr>
                                 @endforeach

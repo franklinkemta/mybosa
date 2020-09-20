@@ -7,7 +7,7 @@
         <div class="col-12 mt-2">
             <div class="card ">
                 <div class="card-header">
-                    <b>Les formations présentées</b>
+                    <b>Les formations présentées par l'établissement</b>
                 </div>
 
                 <div class="card-body" style="min-height:70vh;">

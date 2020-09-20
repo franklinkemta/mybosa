@@ -51,7 +51,7 @@
         <a href="{{ route('selectionFormationsEtudiant') }}" class="btn btn-light mb-3"> <i class="fa fa-edit"></i> Modifier ma sélection de formation </a>
         <p> <b> Prochaine étape > </b> <br>
             @if ($etudiant->profil_complet)
-                <a href="{{ route('inscriptionSelectionFormationsEtudiant') }}" class="btn text-white mt-3" style="background-color: #4FAC2E"> <i class="fa fa-edit"></i> Soumettre ma candidature  </a>
+                <a href="{{ route('inscriptionSelectionFormationsEtudiant') }}" class="btn text-white mt-3" style="background-color: #4FAC2E"> <i class="fa fa-arrow-right"></i> Soumettre ma candidature  </a>
             @else
                 Assurez vous d'avoir rempli chaque section de votre dossier
             @endif

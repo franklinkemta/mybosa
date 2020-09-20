@@ -56,7 +56,7 @@
                                             {{ $candidature['created_at'] }}
                                         </td>
                                         <td scope="row">
-                                            <a target="_blank" href="{{ route('dossierCandidatureAdmin', $candidature['id']) }}" class="btn btn-sm btn-outline-dark"> <i class="fa fa-folder-open-o"></i> </a>
+                                            <a target="_blank" href="{{ route('voirDossierCandidature', $candidature['id']) }}" class="btn btn-sm btn-outline-dark"> <i class="fa fa-folder-open-o"></i> </a>
                                         </td>
                                     </tr>
                                 @endforeach

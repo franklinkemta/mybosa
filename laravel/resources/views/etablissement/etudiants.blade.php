@@ -7,7 +7,7 @@
         <div class="col-12 mt-2">
             <div class="card ">
                 <div class="card-header">
-                    <b>Tous les étudiants</b>
+                    <b>Etudiants ayant éffectué des candidatures</b>
                 </div>
 
                 <div class="card-body" style="min-height:70vh;">

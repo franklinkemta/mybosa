@@ -13,23 +13,23 @@
         <div class="form-group row">
             <div class="form-check col">
                 <label class="form-check-label" for="langue_arabe">Arabe</label>
-                <input class="form-check-input ml-1" name="langue_arabe" type="checkbox" id="langue_arabe" value="{{ $aProposEtudiant->langue_arabe ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_francais ? 'checked' : '' }}>
+                <input class="disabled form-check-input ml-1" name="langue_arabe" type="checkbox" id="langue_arabe" value="{{ $aProposEtudiant->langue_arabe ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_francais ? 'checked' : '' }}>
             </div>
-            <div class="col form-check col">
+            <div class="form-check col">
                 <label class="form-check-label" for="langue_francais">Français</label>
-                <input class="form-check-input ml-1" name="langue_francais" type="checkbox" id="langue_francais" value="{{ $aProposEtudiant->langue_francais ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_francais ? 'checked' : '' }}>
+                <input class="disabled form-check-input ml-1" name="langue_francais" type="checkbox" id="langue_francais" value="{{ $aProposEtudiant->langue_francais ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_francais ? 'checked' : '' }}>
             </div>
             <div class="form-check col">
                 <label class="form-check-label" for="langue_anglais">Anglais</label>
-                <input class="form-check-input ml-1" name="langue_anglais" type="checkbox" id="langue_anglais" value="{{ $aProposEtudiant->langue_anglais ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_anglais ? 'checked' : '' }}>
+                <input class="disabled form-check-input ml-1" name="langue_anglais" type="checkbox" id="langue_anglais" value="{{ $aProposEtudiant->langue_anglais ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_anglais ? 'checked' : '' }}>
             </div>
             <div class="form-check col">
                 <label class="form-check-label" for="langue_espagnol">Espagnol</label>
-                <input class="form-check-input ml-1" name="langue_espagnol" type="checkbox" id="langue_espagnol" value="{{ $aProposEtudiant->langue_espagnol ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_espagnol ? 'checked' : '' }}>
+                <input class="disabled form-check-input ml-1" name="langue_espagnol" type="checkbox" id="langue_espagnol" value="{{ $aProposEtudiant->langue_espagnol ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_espagnol ? 'checked' : '' }}>
             </div>
             <div class="form-check col">
                 <label class="form-check-label" for="langue_allemand">Allemand</label>
-                <input class="form-check-input ml-1" name="langue_allemand" type="checkbox" id="langue_allemand" value="{{ $aProposEtudiant->langue_allemand ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_allemand ? 'checked' : '' }}>
+                <input class="disabled form-check-input ml-1" name="langue_allemand" type="checkbox" id="langue_allemand" value="{{ $aProposEtudiant->langue_allemand ? 'on' : 'off' }}" {{ $aProposEtudiant->langue_allemand ? 'checked' : '' }}>
             </div>
         </div>
 
