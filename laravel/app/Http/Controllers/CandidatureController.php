@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
+// use App\User;
 use App\Admin;
 use App\Candidature;
 use App\Etudiant;
@@ -25,7 +26,7 @@ class CandidatureController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Show the canidature preview.
      *
@@ -55,11 +56,18 @@ class CandidatureController extends Controller
             $query = $query->leftJoin('etablissements', 'etablissements.id', 'candidatures.etablissement_id');
             
             // define fields to select
-            $query->select('candidatures.*','formations.intitule_filiere as intitule_filiere', 'diplomes.niveau as diplome_niveau', 'diplomes.intitule as diplome_intitule', 'etablissements.sigle as etablissement_sigle', 'etablissements.nom as etablissement_nom','etablissements.pays as etablissement_pays','etablissements.ville as etablissement_ville');
+            $query->select('candidatures.*','formations.intitule_filiere as intitule_filiere', 'diplomes.niveau as diplome_niveau', 'diplomes.intitule as diplome_intitule', 'etablissements.sigle as etablissement_sigle', 'etablissements.nom as etablissement_nom','etablissements.pays as etablissement_pays','etablissements.ville as etablissement_ville', 'etablissements.adresse as etablissement_adresse', 'etablissements.telephone as etablissement_telephone','etablissements.email_contact as etablissement_email_contact', 'etablissements.siteweb as etablissement_siteweb');
 
             $candidature = $query->first();
 
+            // the candidature etudiant informations
             $etudiant = Etudiant::findOrFail($candidature->etudiant_id);
+            
+            // get the name of the user who manages the etablissement
+            $userEtablissement = Etablissement::where('etablissements.id', $candidature->etablissement_id)
+                                    ->leftJoin('users', 'etablissements.user_id', 'users.id')
+                                    ->select('users.email') // 'users.prenom', 'users.telephone' // we can't get others field because it doen't exist
+                                    ->first();
 
             $parentsEtudiant = $etudiant->parentsEtudiant;
             $educationsExperiencesEtudiant = $etudiant->educationsExperiencesEtudiant;
@@ -73,6 +81,7 @@ class CandidatureController extends Controller
                 'educationsExperiencesEtudiant' => $educationsExperiencesEtudiant,
                 'aProposEtudiant' => $aProposEtudiant,
                 'documentsEtudiant' => $documentsEtudiant,
+                'userEtablissement' => $userEtablissement,
             ]);
 
         } else {

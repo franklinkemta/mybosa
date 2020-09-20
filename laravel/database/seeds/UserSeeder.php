@@ -35,10 +35,14 @@ class UserSeeder extends Seeder
 
         DB::table('etablissements')->insert([
             'user_id' => $etablissement_user_id,
-            'nom' => 'Ecole des Hautes Etudes de Commerce',
+            'nom' => 'Ecole des Hautes Etudes Commerciales du Maroc',
             'sigle' => 'HEC',
             'pays' => 'MA',
             'ville' => 'RABAT',
+            'adresse' => '4, Rue Tulipa, secteur 18, Hay Riad 10100 Rabat, Maroc',
+            'telephone' => '+212 5 37 67 12 76',
+            'email_contact' => 'contact@hec.ac.ma',
+            'siteweb' => 'wwww.hec.ac.ma',
         ]);
 
         // Create a sample student

@@ -1,3 +1,9 @@
+<?php
+    // Candidature Documents downloads links
+    $photo_url = $documentsEtudiant->photo_url;
+    $piece_identite_url = $documentsEtudiant->piece_identite_url;
+    $autres_documents_url = $documentsEtudiant->autres_documents_url;
+?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
@@ -10,8 +16,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Font Familly CSS -->
+    <!-- Font Familly CSS 
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    -->
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -20,7 +27,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     
     <link rel="stylesheet" href="{{ asset('css/voirDossierCandidature.css') }}">
-    <title>{{ config('app.name').' - Dossier de candidature #' }} {{ $candidature->id }} </title>
+    <title>{{ config('app.name').' - Dossier de candidature #' }} {{ $candidature->id }} - {{ $candidature->etablissement_sigle }} - {{ $candidature->etablissement_ville }} - {{ $etudiant->nom_complet }}  </title>
   </head>
 
   <body>
@@ -37,7 +44,7 @@
                         <ul class="navbar-nav col">
                             
                             <li class="nav-item">
-                                <a class="nav-link btn btn-lg text-white" href="" target="_blank"
+                                <a class="nav-link btn btn-lg text-white" href="{{ asset($photo_url) }}" target="_blank"
                                     data-toggle="tooltip" 
                                     data-html="true" 
                                     title="Télécharger la photo">
@@ -45,7 +52,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn btn-lg text-white" href="" target="_blank""
+                                <a class="nav-link btn btn-lg text-white" href="{{ asset($piece_identite_url) }}" target="_blank""
                                     data-toggle="tooltip" 
                                     data-html="true" 
                                     title="Télécharger la pièce d'identité">
@@ -53,7 +60,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn btn-lg text-white" href="" target="_blank"
+                                <a class="nav-link btn btn-lg text-white" href="{{ asset($autres_documents_url) }}" target="_blank"
                                     data-toggle="tooltip" 
                                     data-html="true" 
                                     title="Télécharger les documents associés">
@@ -71,14 +78,13 @@
                         </ul>
                     </nav>
                     @include('partials.dossierCandidatureSections.sectionHeader')
-                    <form action="#" method="post">
+                    <form action="#" method="POST" enctype="multipart/form-data">
                         @include('partials.dossierCandidatureSections.section0')
                         @include('partials.dossierCandidatureSections.section1')
                         @include('partials.dossierCandidatureSections.section2')
                         @include('partials.dossierCandidatureSections.section3')
-                        @include('partials.dossierCandidatureSections.section4')
                     </form>
-                    
+                    @include('partials.dossierCandidatureSections.sectionFooter')
             </div>
         </div>
     </div>

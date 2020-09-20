@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row text-center">
         <div class="card bg-dark text-white " >
-            <img class="card-img"  src="{{ asset('images/home.jpeg') }}" alt="Card image">
+            <img class="card-img"  src="{{ asset('images/cover_dossier_candidature_etudiant.jpeg') }}" alt="Card image">
             <div class="card-img-overlay">
                 <h3 class="card-title mt-4"> <b class="text-white"> DOSSIER DE CANDIDATURE</b></h3>
                 <div style="margin-top: 35%">
-                    <a href="#" class="mt-5 color" style="font-weight: 900; text-decoration: none;" >
+                    <b class="mt-5 disabled color" style="font-weight: 900; text-decoration: none;" >
                         <img src="{{ asset('favicon.png') }}" width="60" height="60" alt="">
                         MyBosa
-                    </a>
+                    </b>
                 </div>
             </div>
             <div class="card-footer" style="background-color:#499F09">
@@ -18,7 +18,7 @@
     </div>
     
     <div class="row photo_section" style="">
-        <b style="position: absolute; margin-top: -46px; margin-left:10px; font-size: 18px"> Candidature # {{ $candidature->id }}</b>
+        <span style="font-weight:; font-size: 15px; position: absolute; margin-top: -46px; margin-left:10px; "> No. DOSSIER CANDIDATURE : <b>  # {{ $candidature->id }}</b></span>
         <div class="col no-space no-space">    
             <div class="card transparent mt-4">
                     <div class="card-header pt-4 pl-5 text-white" >
