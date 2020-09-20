@@ -70,9 +70,9 @@
                             </li>
                         </ul>
                     </nav>
-                    @include('partials.dossierCandidatureSections.section0')
+                    @include('partials.dossierCandidatureSections.sectionHeader')
                     <form action="#">
-                        @include('partials.dossierCandidatureSections.section1')
+                        @include('partials.dossierCandidatureSections.section0')
                     </form>
                     
             </div>
