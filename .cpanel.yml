@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/$USER/laravel/
+    - export DEPLOYPUBLICPATH=/home/$USER/public_html/
+    - /bin/cp -R laravel $DEPLOYPATH
+    - /bin/cp -R public_html $DEPLOYPUBLICPATH
