@@ -5,6 +5,7 @@ deployment:
     - export DEPLOYPUBLICPATH=/home/$USER/public_html/
     - /bin/cp -R laravel/* $DEPLOYPATH
     - /bin/cp -R public_html/* $DEPLOYPUBLICPATH
+    - /bin/rm $DEPLOYPUBLICPATH/storage
     - cd $DEPLOYPATH
     - composer install --optimize-autoloader --no-dev
     - php artisan config:cache
