@@ -17,7 +17,7 @@
             <p class="main">Aidez de million de jeunes élèves et étudiants à construire leur projet d’avenir.
             </p>
            
-            <a href="{{ route('typeCompte') }}" class="action">Créez un compte gratuitement</a>
+            <a href="{{ route('register') }}" class="action">Créez un compte gratuitement</a>
             <p class="sec">Vous êtes conseiller d’orientation, expert de l'éducation? <br> nous développons un outils pour vous aider dans vos tâches quotidiennes <br>et le plus incroyable c’est que vous serez payé pour faire ce que vous aimez..
             </p>
         </div>
@@ -45,7 +45,7 @@
     <div class="content">
         <h3> Améliorez les résultats de vos apprenants. </h3>
             <p>Nous développons un outil vous permettant d’analyser les résultats scolaires de vos élèves afin de déterminer leurs points forts et faibles pour les aider à s’améliorer. Connectez vous et voyez par vous même!</p>
-        <a href="{{ route('typeCompte') }}">Créez un compte gratuitement</a>
+        <a href="{{ route('register') }}">Créez un compte gratuitement</a>
     </div>
     </div>
   
@@ -57,7 +57,7 @@
         <p>Parce que votre temps compte, MyBosa vous récompense pour chacune de vos minutes à travailler. <b>Comment ça marche ?</b> 
         </p>
         <ol>
-            <li><a href="{{ route('typeCompte') }}" class="inscrip">Inscrivez-vous gratuitement</a></li>
+            <li><a href="{{ route('register') }}" class="inscrip">Inscrivez-vous gratuitement</a></li>
             <li> Complétez votre profil</li>
             <li>Nos commerciaux vous contacteront.</li>
         </ol>
@@ -66,9 +66,8 @@
 </div>
 <div class="inscription_container  last_container">
             <h3>Le meilleur allié du conseiller d’orientation.</h3>
-            <a href="{{ route('typeCompte') }}" class="ensavoir">Commencez gratuitement</a>
+            <a href="{{ route('register') }}" class="ensavoir">Commencez gratuitement</a>
     </div>
-    @include('layouts.footer')  
-    @include('auth.connexion') 
+    @include('layouts.footer')
 </body>
 </html>

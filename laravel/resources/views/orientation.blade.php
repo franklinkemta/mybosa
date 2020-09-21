@@ -13,13 +13,11 @@
 <body>
 
     <div class="orientationHeader">
-        <?php
-        include('header.php');
-        ?>
+        @include('layouts.header')
         <div class="sub_page_info">
             <div>
             <p class="main">L’équation de la réussite professionnelle  <br>Passion ÷ compétences > 1</p>
-            <a href="{{ route('typeCompte') }}" class="action">Créez un compte gratuitement</a>
+            <a href="{{ route('register') }}" class="action">Créez un compte gratuitement</a>
             <p class="sec">Des milliers de conseillers d’orientation à votre disposition.</p>
             </div>
         </div>
@@ -49,7 +47,7 @@
         <div class="content">
             <h3>Étudiez à moindre coût</h3>
             <p>Nos experts de l’éducation sauront vous aider; pallier aux problèmes de financement des études en vous proposant des solutions pour étudier à moindre coût.</p>
-            <a href="{{ route('typeCompte') }}">Créez un compte gratuitement</a>
+            <a href="{{ route('register') }}">Créez un compte gratuitement</a>
         </div>
          <img src="images/PO_S3.png" alt="">
       
@@ -67,12 +65,9 @@
    
     <div class="inscription_container">
             <h3>Des experts de l’éducation à votre portée.</h3>
-        <a href="{{ route('typeCompte') }}" class="ensavoir">Commencez gratuitement</a>
+        <a href="{{ route('register') }}" class="ensavoir">Commencez gratuitement</a>
     </div>
 
-</body>
-    <?php include('footer.php');
-    include('connexion.php');
-    ?>
-    
+    @include('layouts.footer')  
+</body> 
 </html>

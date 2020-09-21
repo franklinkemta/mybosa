@@ -16,7 +16,7 @@
                 </ul>
             </div>
         
-            <div class="elipseXs"><p class="inscriptionXs"><a href="{{ route('typeCompte') }}" >Inscription</a></p></div>
+            <div class="elipseXs"><p class="inscriptionXs"><a href="{{ route('register') }}" >Inscription</a></p></div>
         </div>
         <a href="{{ url('/') }}"><img src="images/logo_.png" alt="Logo image" class="logo" title="Logo"></a>
         <a href="{{ url('/') }}" class="logoMobileLink"><img src="images/logoMobile.png" alt="Logo image" class="logoMobile" title="Logo"></a>
@@ -38,10 +38,10 @@
     </nav>
     <div class="sub_menu">
         <ul>
-          <li> <a href="formation.php">Formation</a>
+          <li> <a href="{{ url('/formation') }}">Formation</a>
              <p>Le meilleur moteur de recherche pour trouver un établissement supérieur.</p>
           </li>
-          <li> <a href="orientation.php">Orientation</a>
+          <li> <a href="{{ url('/orientation') }}">Orientation</a>
             <p>Aidez de million de jeunes élèves et étudiants à construire leur projet d’avenir.</p>
           </li>
         </ul>

@@ -29,20 +29,11 @@ Route::get('/conseiller', function () {
     return view('conseiller');
 });
 
-// ['as' => 'route_name', 'uses' => 'HomeController@typeCompte']
-Route::get('/typeCompte', function () {
-    return view('auth.typeCompte');
-})->name('typeCompte');
+Route::get('/orientation', function () {
+    return view('orientation');
+});
 
-Route::get('/inscription', function () {
-    if(isset($_GET['typeCompte'])){
-        $typeCompte = htmlspecialchars($_GET['typeCompte']);
-        if($typeCompte== "etablissement") return view('auth.inscriptionEtablissement');
-        else if($typeCompte== "conseiller") return view('auth.inscriptionConseiller');
-        else return view('auth.inscriptionEtudiant');
-    } else return redirect(route('typeCompte'));
-})->name('inscription');
-
+// Auth route : /login and /register
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

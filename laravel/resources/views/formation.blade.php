@@ -14,7 +14,7 @@
         @include('layouts.header')
         <div class="sub_page_info">
             <p class="main">Connectez aux formations qui vous garantissent un avenir plus confiant.</p>
-            <a href="{{ route('typeCompte') }}" class="action">Créez un compte gratuitement</a>
+            <a href="{{ route('register') }}" class="action">Créez un compte gratuitement</a>
             <p class="sec"> Le meilleur moteur de recherche pour trouver un établissement supérieur, parcourez en une recherche les meilleurs écoles et trouver celle qui match le mieux avec vous!  </p>
         </div>
     </div>
@@ -42,7 +42,7 @@
         <div class="text_main2">
             <h3>Faites le meilleur choix</h3>
             <p>La valeur du diplôme décroît alors que celle du coût d’un diplôme ne fait qu’augmenter. C’est pourquoi bien choisir sa filière, le modèle de formation (faculté ou grande école ... / public ou privé), format de cours, l’établissement, la ville et bien d’autres sont des critères d’une très grande importance. </p>    
-            <a href="{{ route('typeCompte') }}" >Créez un compte gratuitement</a>
+            <a href="{{ route('register') }}" >Créez un compte gratuitement</a>
         </div>
     </div>
 
@@ -68,11 +68,10 @@
 
     <div class="inscription_container  last_container">
         <h3>Le pont vers un avenir plus certain! </h3>
-        <a href="{{ route('typeCompte') }}" class="ensavoir">Commencez gratuitement</a>
+        <a href="{{ route('register') }}" class="ensavoir">Commencez gratuitement</a>
     </div>
 
-    @include('layouts.footer')  
-    @include('auth.connexion')
+    @include('layouts.footer')
     
 </body>
 </html>

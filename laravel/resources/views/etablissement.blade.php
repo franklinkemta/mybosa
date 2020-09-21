@@ -14,7 +14,7 @@
         @include('layouts.header')
         <div class="sub_page_info">
             <p class="main">Google ads c’est cher et ça craint! Avec Mybosa payez uniquement pour le résultat.</p>
-            <a class="action" href="{{ route('typeCompte') }}">Commencez gratuitement</a>
+            <a class="action" href="{{ route('register') }}">Commencez gratuitement</a>
             <p class="sec">La solution facile et simple à implémenter pour acquérir de nouveaux étudiants.</p>
         </div> 
     </div>
@@ -24,7 +24,7 @@
         <div class="content">
               <h3>Plateforme de mis en rélation directe entre étudiants et établissements</h3> 
             <p>Nous développons une solution qui permet de mettre en relation direct des établissements supérieures et des étudiants en majorité jeunes bacheliers, créez votre compte  et commencez à recevoir des demandes d’étudiants intéressés par vos formations.</p>
-           <a href="{{ route('typeCompte') }}">Créez un compte gratuitement</a>
+           <a href="{{ route('register') }}">Créez un compte gratuitement</a>
         </div>
         <div>
             <img src="images/PE_S2.png" alt="">
@@ -50,7 +50,7 @@
         <div class="content">  
             <h3>Faites de l’économie en gagnant de la croissance.</h3>
             <p>Fini les gros budgets marketing et commercial.<br>MyBosa communique pour vous à moindre coût et vous ne payez que les résultats obtenus</p>
-             <a href="{{ route('typeCompte') }}">Créez un compte gratuitement</a>
+             <a href="{{ route('register') }}">Créez un compte gratuitement</a>
         </div>
          <div>
             <img src="images/img_croissance.png" alt="">
@@ -80,10 +80,9 @@
 
     <div class="inscription_container  last_container">
             <h3>Vous n’êtes qu’à quelques clics de vos futurs étudiants.</h3>
-            <a href="{{ route('typeCompte') }}" class="ensavoir">Commencez gratuitement</a>
+            <a href="{{ route('register') }}" class="ensavoir">Commencez gratuitement</a>
     </div>
     @include('layouts.footer')  
-    @include('auth.connexion')   
 </body>
 </html>
 

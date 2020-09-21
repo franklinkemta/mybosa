@@ -22,7 +22,7 @@ header("Access-Control-Allow-Origin: *");?>
         @include('layouts.header')
         <div class="sub_page_info">
             <p class="main">Trouvez ce qu’il y’a de mieux en matière d’éducation! </p>
-            <a href="{{ route('typeCompte') }}" class="action"> Créer un compte gratuitement</a>
+            <a href="{{ route('register') }}" class="action"> Créer un compte gratuitement</a>
             <p class="sec">Etudiez partout à tout moment....</p>
         </div>
     </header>
@@ -35,19 +35,19 @@ header("Access-Control-Allow-Origin: *");?>
                 <img src="images/study.png" alt="Image Etudiant">
                 <h3>Étudiants</h3>
                 <p class="etudiants">Vous êtes à la recherche d’une école? Besoin d’orientation? une bourse d’étude? comparez vos possibilités.</p> 
-                <a href="formation.php" class="ensavoir"> En savoir plus</a>
+                <a href="{{ url('/formation') }}" class="ensavoir"> En savoir plus</a>
             </div>
             <div class="category">
                 <img src="images/ets.png" alt="Image établissement">
                 <h3>Établissement</h3>
                 <p> Remplissez vos salles de classe en quelques clics. Réduisez vos coûts marketing avec une solution qui marche!</p>
-                <a href="etablissement.php" class="ensavoir"> En savoir plus</a>
+                <a href="{{ url('/etablissement') }}" class="ensavoir"> En savoir plus</a>
             </div>
             <div class="category">
                 <img src="images/orientation.png" alt="Image Conseiller">
                 <h3>Conseiller d’orientation </h3>
                 <p>Gagnez de l’argent en faisant ce que vous aimez, en aidant nos étudiants,profitez de MyBosa dans l'exécution tâches.</p> 
-                <a href="conseiller.php" class="ensavoir"> En savoir plus</a>
+                <a href="{{ url('/conseiller') }}" class="ensavoir"> En savoir plus</a>
             </div>
         </div>
     </div>  
@@ -59,7 +59,7 @@ header("Access-Control-Allow-Origin: *");?>
         <div class="premiereEtape">
                 <img src="images/etp1.png" alt="">
                 <div class="legende">
-                 <div><div class="cercle"><span>1</span></div><p><a href="{{ route('typeCompte') }}"> Ouvrez un compte</a> en quelques clics et complétez votre profil</p></div>   
+                 <div><div class="cercle"><span>1</span></div><p><a href="{{ route('register') }}"> Ouvrez un compte</a> en quelques clics et complétez votre profil</p></div>   
                 </div>
             </div>
           <img src="images/suivnt.png" alt="" class="suivant_etape">
@@ -88,7 +88,7 @@ header("Access-Control-Allow-Origin: *");?>
             </div>
 
             </div>
-            <a href="{{ route('typeCompte') }}" class="ensavoir">Créez un compte gratuitement</a>
+            <a href="{{ route('register') }}" class="ensavoir">Créez un compte gratuitement</a>
 
         </div>
         <div class="container_2 image_fond">
@@ -96,7 +96,7 @@ header("Access-Control-Allow-Origin: *");?>
                 <div class="descp">
                     <h3>La solution idéale pour les établissements supérieurs privés.</h3>
                     <p>Recevez des centaines de candidatures qualifiées en toute simplicité. Nous nous occupons de tout, du début à la fin. Détendez-vous, laissez faire les choses.</p>
-                    <a href="{{ route('typeCompte') }}" class="ensavoir">Commencez gratuitement</a>  
+                    <a href="{{ route('register') }}" class="ensavoir">Commencez gratuitement</a>  
                 </div>
                 <img src="images/computer.png" alt="" class="phone">
             </div>
@@ -108,7 +108,7 @@ header("Access-Control-Allow-Origin: *");?>
     <div class="video_text">
         <h3>Notre expérience & Pays couverts.</h3>
         <p>MyBosa c’est déjà une trentaine d’étudiants accompagnés et une dizaine d’étudiants subsahariens inscrits dans les écoles supérieures marocaine pour l’année académique 2019 - 2020.</p>
-        <a href="{{ route('typeCompte') }}" class="ensavoir">Créez un Compte</a>  
+        <a href="{{ route('register') }}" class="ensavoir">Créez un Compte</a>  
     </div>
 </div>
         
@@ -167,9 +167,7 @@ header("Access-Control-Allow-Origin: *");?>
                 }
 ?>
 
-@include('layouts.footer')  
-
-@include('auth.connexion')
+@include('layouts.footer')
 
     
 </body>
