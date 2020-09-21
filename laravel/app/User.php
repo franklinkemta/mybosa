@@ -73,4 +73,12 @@ class User extends Authenticatable  implements JWTSubject
     {
         return $this->hasOne('App\Etablissement');
     }
+
+    /**
+     * Get the admin record associated with the user.
+     */
+    public function admin()
+    {
+        return $this->hasOne('App\Admin');
+    }
 }

@@ -92,7 +92,9 @@
                 </span>
             @enderror
             <p class="col-12 pt-2 text-secondary">
-                <i>Uploader une archive au format .Zip ou un PDF contenant autres documents et diplômes nécessaires</i>
+                <i>Uploader une archive au format .Zip ou un PDF contenant autres documents et diplômes nécessaires:</i> <br> <br>
+                Bulletins de Terminal, Relevé de notes du Baccalaureat, Relevés de notes Semestre 1,2,3,4,5,6,7,8  <br>
+                Attestations de réussite de Licence, Master si obtenus
             </p>
         </div>
 
