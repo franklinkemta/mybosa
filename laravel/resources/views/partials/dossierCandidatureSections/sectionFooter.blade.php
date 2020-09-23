@@ -103,17 +103,9 @@
             @enderror
         </div>
     </div>
-
-    <div class="form-group row">
-        <label for="signature_candidat_commission" class="col-auto col-form-label col-form-label-sm">  Signature du candidat  :</label>
-        <div class="col-3">
-            <textarea id="signature_candidat_commission" class="form-control form-control-sm @error('signature_candidat_commission') is-invalid @enderror" name="signature_candidat_commission" autocomplete="signature_candidat_commission"  rows="2" maxlength="300"></textarea>
-            @error('signature_candidat_commission')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
+    <div class="form-check row">
+        <label for="signature_candidat_commission" class=" form-check-label mr-4">  Signature du candidat  :</label>
+        <input class="form-check-input @error('signature_candidat_commission') is-invalid @enderror" name="signature_candidat_commission"  type="checkbox" id="signature_candidat_commission" value="'on'" checked>
     </div>  
 
     <hr class="hide">

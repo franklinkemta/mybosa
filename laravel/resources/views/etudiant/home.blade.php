@@ -83,6 +83,7 @@
                     @else
                         @if ($choix_formation) 
                             <a href="{{ route('inscriptionSelectionFormationsEtudiant') }}" class="btn _btn-success text-white my-2" style="background-color: #4FAC2E"> <i class="fa fa-share-square"></i> SOUMETTRE MA CANDIDATURE </a>
+                            <br> <i>En cliquant sur ce boutton vous reconnaissez que les informations renseignées sont vraies </i>
                         @endif
                     @endif
                 </div>

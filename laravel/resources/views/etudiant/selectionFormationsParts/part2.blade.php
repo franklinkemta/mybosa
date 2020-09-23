@@ -46,7 +46,7 @@
     <b>Sélectionner les formations auxquelles vous souhaitez postuler </b> <small id="loader_formations" style="display:none;"><i class="fa fa-spinner ml-2 mr-1"></i>Patientez...</small>
 </h6>
 
-<table class="table form-group" style="min-height:200px">
+<table class="table form-group" >
     <thead class="thead-light">
         <tr>  
             <th scope="col">Formation</th>

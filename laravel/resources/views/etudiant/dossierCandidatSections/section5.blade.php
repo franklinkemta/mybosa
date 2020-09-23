@@ -52,6 +52,7 @@
         <p> <b> Prochaine étape > </b> <br>
             @if ($etudiant->profil_complet)
                 <a href="{{ route('inscriptionSelectionFormationsEtudiant') }}" class="btn text-white mt-3" style="background-color: #4FAC2E"> <i class="fa fa-arrow-right"></i> Soumettre ma candidature  </a>
+                <br><br> <i>En cliquant sur ce boutton vous reconnaissez que les informations renseignées sont vraies </i>
             @else
                 Assurez vous d'avoir rempli chaque section de votre dossier
             @endif

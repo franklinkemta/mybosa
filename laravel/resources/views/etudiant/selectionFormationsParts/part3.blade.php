@@ -32,6 +32,7 @@
     <div class="col-md-12">
         @if (Auth::user()->etudiant->profil_complet)
             <a href="{{ route('inscriptionSelectionFormationsEtudiant') }}" class="btn _btn-success text-white my-2" style="background-color: #4FAC2E"> <i class="fa fa-share-square"></i> SOUMETTRE MA CANDIDATURE </a>
+            <br> <i>En cliquant sur ce boutton vous reconnaissez que les informations renseignées sont vraies </i>
         @else
             <a href="{{ route('dossierCandidatEtudiant') }}" class="btn btn-info my-2"> <i class="fa fa-edit"></i> Completer mon dossier </a>
         @endif
